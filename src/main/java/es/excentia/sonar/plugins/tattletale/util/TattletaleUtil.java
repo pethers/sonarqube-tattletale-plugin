@@ -110,7 +110,7 @@ public final class TattletaleUtil {
         }
 
         // text matches
-        if (nodeText.equals(text)) {
+        if (nodeText.equals(text) || nodeText.endsWith(text)) {
           times++;
         }
       }

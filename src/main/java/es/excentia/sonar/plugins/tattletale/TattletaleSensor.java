@@ -139,7 +139,11 @@ public class TattletaleSensor implements Sensor {
       context.saveMeasure(new Measure(htmlMetric, data));
 
       // obtaining metric
-      filter = new TagNameFilter("td");
+      if (valueMetric.equals(TattletaleMetrics.NOVERSIONJARS)) {
+        filter = new TagNameFilter("p");
+      } else {
+        filter = new TagNameFilter("td");
+      }
       Integer metricValue = TattletaleUtil.countNumberOfTimesAppearsText(page, filter, expression);
 
       if (valueMetric.equals(TattletaleMetrics.SIGNEDJARS)) {
@@ -179,6 +183,10 @@ public class TattletaleSensor implements Sensor {
       // SIGNED JARs
       data = TattletaleUtil.fileToString(directory + "/sign/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLSIGNEDJARS, TattletaleMetrics.SIGNEDJARS, "Signed");
+
+      // NO VERSION JARs
+      data = TattletaleUtil.fileToString(directory + "/noversion/index.html");
+      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLNOVERSIONJARS, TattletaleMetrics.NOVERSIONJARS, ".jar");
     }
   }
 }

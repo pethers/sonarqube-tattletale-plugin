@@ -48,13 +48,27 @@ public class TattletaleMetrics implements Metrics {
   public static final Metric HTMLSIGNEDJARS = new Metric.Builder("html_signedjars", "HTML Signed JARs", ValueType.DATA)
       .setDescription("Signed JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
 
+  /******************************************************* NO VERSION JARS **********************************************************/
+
+  /**
+   * Signed jars
+   */
+  public static final Metric NOVERSIONJARS = new Metric.Builder("noversionjars", "No version JARs", ValueType.INT)
+      .setDescription("No version JARs number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
+
+  /**
+   * Signed jars HTML
+   */
+  public static final Metric HTMLNOVERSIONJARS = new Metric.Builder("html_noversionjars", "HTML No version JARs", ValueType.DATA)
+      .setDescription("No version JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
+
   /**
    * getMetrics Static method
    * 
    * @return metrics defined list
    */
   public static List<Metric> getMetricsStatic() {
-    return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, HTMLUNUSEDJARS, HTMLSIGNEDJARS);
+    return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, NOVERSIONJARS, HTMLUNUSEDJARS, HTMLSIGNEDJARS, HTMLNOVERSIONJARS);
   }
 
   /**

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -48,7 +49,8 @@ public class TattletaleSensorTest {
 
     List<Metric> dependedMetrics = sensor.getDependedMetrics();
 
-    assertTrue(dependedMetrics.contains(TattletaleMetrics.UNUSEDJARS));
-    assertTrue(dependedMetrics.contains(TattletaleMetrics.HTMLUNUSEDJARS));
+    assertTrue(dependedMetrics.containsAll(Arrays.asList(TattletaleMetrics.HTMLUNUSEDJARS, TattletaleMetrics.HTMLNOVERSIONJARS,
+        TattletaleMetrics.HTMLSIGNEDJARS, TattletaleMetrics.NOVERSIONJARS, TattletaleMetrics.SIGNEDJARS, TattletaleMetrics.UNUSEDJARS,
+        TattletaleMetrics.TOTALJARS)));
   }
 }

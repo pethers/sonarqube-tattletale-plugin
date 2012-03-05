@@ -82,7 +82,7 @@ public class TattletaleUtilTest {
   }
 
   @Test
-  public void testPutSonarCssStyle() {
+  public void testPutCssStyle() {
     try {
       NodeList page = parser.parse(null);
       NodeFilter linkFilter = new TagNameFilter("link");

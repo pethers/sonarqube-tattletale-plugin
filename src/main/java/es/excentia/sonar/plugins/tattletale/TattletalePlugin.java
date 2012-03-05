@@ -6,6 +6,7 @@ import java.util.List;
 import org.sonar.api.Extension;
 import org.sonar.api.SonarPlugin;
 
+import es.excentia.sonar.plugins.tattletale.widget.TattletaleNoVersionJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleSignedJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleUnusedJarsWidget;
 
@@ -27,6 +28,7 @@ public class TattletalePlugin extends SonarPlugin {
     extensions.add(TattletaleSensor.class);
     extensions.add(TattletaleUnusedJarsWidget.class);
     extensions.add(TattletaleSignedJarsWidget.class);
+    extensions.add(TattletaleNoVersionJarsWidget.class);
 
     return extensions;
   }
