@@ -1,0 +1,46 @@
+body {
+	font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
+}
+
+p {
+	font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
+	font-weight: bold;
+}
+
+hr {
+    border-top: 1px solid #a4b2b9;
+    border-right: 0px solid #a4b2b9;
+    border-left: 0px solid #a4b2b9;
+    border-bottom: 0px solid #a4b2b9;
+    margin-bottom: 3px;
+}
+
+table {
+	font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
+	width: 100%;
+	border-collapse : collapse; 
+    border-style: none;
+}
+
+tr th {
+    background-color: #d9e0e3;
+    font-weight: bold;
+    color: #5f6a6f;
+    text-align: left;
+    padding: 3px;
+}
+
+tr td {
+    vertical-align: top;
+    font-weight: bold;
+    text-align: left;
+    padding: 3px;
+}
+
+.roweven {
+    background-color: white;
+}
+
+.rowodd {
+    background-color: #eff4f7;
+}

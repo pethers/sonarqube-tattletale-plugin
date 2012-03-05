@@ -15,6 +15,14 @@ public class TattletaleMetrics implements Metrics {
   private static final String DOMAIN = "Tattletale";
 
   /**
+   * Total jars
+   */
+  public static final Metric TOTALJARS = new Metric.Builder("totaljars", "Total JARs", ValueType.INT).setDescription("Total JARs number")
+      .setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
+
+  /******************************************************* UNUSED JARS *************************************************************/
+
+  /**
    * Unused jars
    */
   public static final Metric UNUSEDJARS = new Metric.Builder("unusedjars", "Unused JARs", ValueType.INT)
@@ -25,6 +33,8 @@ public class TattletaleMetrics implements Metrics {
    */
   public static final Metric HTMLUNUSEDJARS = new Metric.Builder("html_unusedjars", "HTML Unused JARs", ValueType.DATA)
       .setDescription("Unused JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
+
+  /******************************************************* SIGNED JARS *************************************************************/
 
   /**
    * Signed jars
@@ -44,7 +54,7 @@ public class TattletaleMetrics implements Metrics {
    * @return metrics defined list
    */
   public static List<Metric> getMetricsStatic() {
-    return Arrays.asList(UNUSEDJARS, SIGNEDJARS, HTMLUNUSEDJARS, HTMLSIGNEDJARS);
+    return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, HTMLUNUSEDJARS, HTMLSIGNEDJARS);
   }
 
   /**

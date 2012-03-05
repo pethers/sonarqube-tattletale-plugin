@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.sonar.api.CoreProperties;
+import org.sonar.api.config.Settings;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Project;
@@ -16,10 +18,14 @@ import org.sonar.api.resources.Project;
 public class TattletaleSensorTest {
 
   private static TattletaleSensor sensor;
+  private static Settings settings;
 
   @BeforeClass
   public static void setUp() {
-    sensor = new TattletaleSensor();
+    settings = new Settings();
+    settings.setProperty(CoreProperties.SERVER_BASE_URL, "http://localhost:9000");
+
+    sensor = new TattletaleSensor(settings);
   }
 
   @Test

@@ -42,14 +42,16 @@ public final class TattletaleUtil {
   }
 
   /**
-   * Puts Sonar CSS Style into the HEAD
+   * Puts CSS Style into the HEAD
    * 
    * @param allNodes
    *          Nodes list
    * @param filter
    *          Type of elements to match
+   * @param style
+   *          CSS style
    */
-  public static void putSonarCssStyle(NodeList allNodes, NodeFilter filter) {
+  public static void putCssStyle(NodeList allNodes, NodeFilter filter, String style) {
     Node node;
     NodeList children;
     String nodeText, replacement;
@@ -61,7 +63,7 @@ public final class TattletaleUtil {
         nodeText = node.getText();
 
         replacement = "<";
-        replacement = replacement.concat(nodeText.replaceFirst("href=\".*css\"", "href=\"/stylesheets/sonar.css\""));
+        replacement = replacement.concat(nodeText.replaceFirst("href=\".*css\"", "href=\"" + style + "\""));
         replacement = replacement.concat(">");
 
         node.setText(replacement);
@@ -72,7 +74,7 @@ public final class TattletaleUtil {
       children = node.getChildren();
 
       if (children != null) {
-        putSonarCssStyle(children, filter);
+        putCssStyle(children, filter, style);
       }
     }
   }
@@ -86,6 +88,7 @@ public final class TattletaleUtil {
    *          Type of elements to match
    * @param text
    *          String we're looking for
+   * @return number of times that text appears
    */
   public static int countNumberOfTimesAppearsText(NodeList allNodes, NodeFilter filter, String text) {
     Node node, childrenNode;
@@ -181,10 +184,12 @@ public final class TattletaleUtil {
    *          Type of elements to remove
    * @param onlyOne
    *          if its true, only removes one element
+   * @return Number of nodes deleted
    */
-  public static void removeNodesThatMatch(NodeList allNodes, NodeFilter filter, boolean onlyOne) {
+  public static int removeNodesThatMatch(NodeList allNodes, NodeFilter filter, boolean onlyOne) {
     Node node;
     NodeList children;
+    int times = 0;
 
     for (int i = 0; i < allNodes.size(); i++) {
       node = allNodes.elementAt(i);
@@ -192,17 +197,21 @@ public final class TattletaleUtil {
       if (filter.accept(node)) {
         allNodes.remove(node);
 
+        times++;
+
         if (onlyOne) {
-          return;
+          return times;
         }
       }
 
       children = node.getChildren();
 
       if (children != null) {
-        removeNodesThatMatch(children, filter, onlyOne);
+        times += removeNodesThatMatch(children, filter, onlyOne);
       }
     }
+
+    return times;
   }
 
   /**

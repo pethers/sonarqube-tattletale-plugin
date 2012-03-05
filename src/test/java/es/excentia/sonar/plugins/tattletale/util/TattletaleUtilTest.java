@@ -38,9 +38,10 @@ public class TattletaleUtilTest {
 
       assertTrue(page.extractAllNodesThatMatch(filter, true).size() == 1);
 
-      TattletaleUtil.removeNodesThatMatch(page, filter, true);
+      int deletedNodes = TattletaleUtil.removeNodesThatMatch(page, filter, true);
 
       assertTrue(page.extractAllNodesThatMatch(filter, true).size() == 0);
+      assertTrue(deletedNodes == 1);
 
     } catch (ParserException exception) {
       System.err.println(exception.getMessage());
@@ -79,14 +80,14 @@ public class TattletaleUtilTest {
       System.err.println(exception.getMessage());
     }
   }
-  
+
   @Test
   public void testPutSonarCssStyle() {
     try {
       NodeList page = parser.parse(null);
       NodeFilter linkFilter = new TagNameFilter("link");
-      
-      TattletaleUtil.putSonarCssStyle(page, linkFilter);
+
+      TattletaleUtil.putCssStyle(page, linkFilter, "/stylesheets/sonar.css");
 
       assertTrue(page.toHtml().contains("href=\"/stylesheets/sonar.css\""));
 

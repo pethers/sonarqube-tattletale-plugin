@@ -3,10 +3,11 @@
 		<p class="title">
 			<%= message('widget.unusedjars.title') -%>
 		</p>
+		<% if measure('html_unusedjars') && measure('unusedjars') && measure('totaljars') %> 
 		<p>
-			<span class="big"> <%= format_measure('unusedjars') -%> <%= tendency_icon(measure('unusedjars')) -%> </span>
+			<span class="big"> <%= format_measure('unusedjars') -%> <%= tendency_icon(measure('unusedjars')) -%></span> /<%= format_measure('totaljars') -%>
 		</p>
-		<% if !measure('html_unusedjars') && !measure('unusedjars') %>
+		<% else %>
 			<br />
 			<p>
 				<%= message('widget.sonar-tattletale-plugin.error') -%>
@@ -14,19 +15,19 @@
 		<% end %>
 		<script type="text/javascript">
 		
-			<% if measure('html_unusedjars') && measure('unusedjars') %>
-				function fillsFrames() {
-					var htmlData = '<%= measure('html_unusedjars').data -%>';
-					document.getElementById('unusedJarsIframe').contentDocument.body.innerHTML = htmlData;
+			<% if measure('html_unusedjars') && measure('unusedjars') && measure('totaljars') %> 
+				function fillsUnusedJars() {
+					var unusedHtmlData = '<%= measure('html_unusedjars').data -%>';
+					document.getElementById('unusedJarsIframe').contentDocument.body.innerHTML = unusedHtmlData;
 				}
 
 				Event.observe(window, 'load', function() {
-					fillsFrames();
+					fillsUnusedJars();
 				});
 			<% end %>
 		</script>
 	</div>
 </div>
-<% if measure('html_unusedjars') && measure('unusedjars') %> 
+<% if measure('html_unusedjars') && measure('unusedjars') && measure('totaljars') %> 
 	<iframe id="unusedJarsIframe" width="100%" style="border: 0"></iframe>
 <% end %> 
