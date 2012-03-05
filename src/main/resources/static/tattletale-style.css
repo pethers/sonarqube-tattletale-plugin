@@ -4,7 +4,6 @@ body {
 
 p {
 	font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
-	font-weight: bold;
 }
 
 hr {
@@ -32,7 +31,6 @@ tr th {
 
 tr td {
     vertical-align: top;
-    font-weight: bold;
     text-align: left;
     padding: 3px;
 }

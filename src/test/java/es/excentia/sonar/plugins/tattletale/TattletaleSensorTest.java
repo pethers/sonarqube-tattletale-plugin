@@ -51,6 +51,6 @@ public class TattletaleSensorTest {
 
     assertTrue(dependedMetrics.containsAll(Arrays.asList(TattletaleMetrics.HTMLUNUSEDJARS, TattletaleMetrics.HTMLNOVERSIONJARS,
         TattletaleMetrics.HTMLSIGNEDJARS, TattletaleMetrics.NOVERSIONJARS, TattletaleMetrics.SIGNEDJARS, TattletaleMetrics.UNUSEDJARS,
-        TattletaleMetrics.TOTALJARS)));
+        TattletaleMetrics.TOTALJARS, TattletaleMetrics.INVALIDVERSIONJARS, TattletaleMetrics.HTMLINVALIDVERSIONJARS)));
   }
 }
