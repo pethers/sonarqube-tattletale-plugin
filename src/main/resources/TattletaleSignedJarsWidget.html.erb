@@ -1,0 +1,32 @@
+<div class="yui-g">
+	<div class="dashbox" style="height:100%">
+		<p class="title">
+			<%= message('widget.signedjars.title') -%>
+		</p>
+		<p>
+			<span class="big"> <%= format_measure('signedjars') -%> <%= tendency_icon(measure('signedjars')) -%> </span>
+		</p>
+		<% if !measure('html_signedjars') %>
+			<br />
+			<p>
+				<%= message('widget.sonar-tattletale-plugin.error') -%>
+			</p>
+		<% end %>
+		<script type="text/javascript">
+		
+			<% if measure('html_signedjars') %>
+				function fillsFrames() {
+					var htmlData = '<%= measure('html_signedjars').data -%>';
+					document.getElementById('signedJarsIframe').contentDocument.body.innerHTML = htmlData;
+				}
+
+				Event.observe(window, 'load', function() {
+					fillsFrames();
+				});
+			<% end %>
+		</script>
+	</div>
+</div>
+<% if measure('html_signedjars') %> 
+	<iframe id="signedJarsIframe" width="100%" style="border: 0"></iframe>
+<% end %> 
