@@ -1,0 +1,33 @@
+<div class="yui-g">
+	<div class="dashbox" style="height:100%">
+		<p class="title">
+			<%= message('widget.circulardependencies.title') -%>
+		</p>
+		<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %>
+		<p>
+			<span class="big"> <%= format_measure('circulardependencies') -%> <%= tendency_icon(measure('circulardependencies')) -%></span> /<%= format_measure('totaljars') -%>
+		</p>
+		<% else %>
+			<br />
+			<p>
+				<%= message('widget.sonar-tattletale-plugin.error') -%>
+			</p>
+		<% end %>
+		<script type="text/javascript">
+		
+			<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %>
+				function fillsCircularDependencies() {
+					var circularDependenciesHtmlData = '<%= measure('html_circulardependencies').data -%>';
+					document.getElementById('circularDependenciesIframe').contentDocument.body.innerHTML = circularDependenciesHtmlData;
+				}
+
+				Event.observe(window, 'load', function() {
+					fillsCircularDependencies();
+				});
+			<% end %>
+		</script>
+	</div>
+</div>
+<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %> 
+	<iframe id="circularDependenciesIframe" width="100%" style="border: 0"></iframe>
+<% end %> 

@@ -53,6 +53,6 @@ public class TattletaleSensorTest {
         TattletaleMetrics.HTMLSIGNEDJARS, TattletaleMetrics.NOVERSIONJARS, TattletaleMetrics.SIGNEDJARS, TattletaleMetrics.UNUSEDJARS,
         TattletaleMetrics.TOTALJARS, TattletaleMetrics.INVALIDVERSIONJARS, TattletaleMetrics.HTMLINVALIDVERSIONJARS,
         TattletaleMetrics.REPEATEDCLASSES, TattletaleMetrics.HTMLREPEATEDCLASSES, TattletaleMetrics.REPEATEDPACKAGES,
-        TattletaleMetrics.HTMLREPEATEDPACKAGES)));
+        TattletaleMetrics.HTMLREPEATEDPACKAGES, TattletaleMetrics.CIRCULARDEPENDENCIES, TattletaleMetrics.HTMLCIRCULARDEPENDENCIES)));
   }
 }

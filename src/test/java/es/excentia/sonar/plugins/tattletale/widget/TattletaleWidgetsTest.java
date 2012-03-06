@@ -15,6 +15,7 @@ public class TattletaleWidgetsTest {
   private static TattletaleInvalidVersionJarsWidget invalidVersionJarsWidget;
   private static TattletaleRepeatedClassesWidget repeatedClassesWidget;
   private static TattletaleRepeatedPackagesWidget repeatedPackagesWidget;
+  private static TattletaleCircularDependenciesWidget circularDependenciesWidget;
 
   /**
    * Called once before test methods
@@ -27,6 +28,7 @@ public class TattletaleWidgetsTest {
     invalidVersionJarsWidget = new TattletaleInvalidVersionJarsWidget();
     repeatedClassesWidget = new TattletaleRepeatedClassesWidget();
     repeatedPackagesWidget = new TattletaleRepeatedPackagesWidget();
+    circularDependenciesWidget = new TattletaleCircularDependenciesWidget();
   }
 
   @Test
@@ -37,6 +39,7 @@ public class TattletaleWidgetsTest {
     assertEquals(invalidVersionJarsWidget.getId(), "tattletaleinvalidversionjarswidget");
     assertEquals(repeatedClassesWidget.getId(), "tattletalerepeatedclasseswidget");
     assertEquals(repeatedPackagesWidget.getId(), "tattletalerepeatedpackageswidget");
+    assertEquals(circularDependenciesWidget.getId(), "tattletalecirculardependencieswidget");
   }
 
   @Test
@@ -47,6 +50,7 @@ public class TattletaleWidgetsTest {
     assertEquals(invalidVersionJarsWidget.getTitle(), "Tattletale Invalid Version JARs");
     assertEquals(repeatedClassesWidget.getTitle(), "Tattletale Repeated Classes");
     assertEquals(repeatedPackagesWidget.getTitle(), "Tattletale Repeated Packages");
+    assertEquals(circularDependenciesWidget.getTitle(), "Tattletale Circular Dependencies JARs");
   }
 
   @Test
@@ -57,5 +61,6 @@ public class TattletaleWidgetsTest {
     assertEquals(invalidVersionJarsWidget.getTemplatePath(), "/TattletaleInvalidVersionJarsWidget.html.erb");
     assertEquals(repeatedClassesWidget.getTemplatePath(), "/TattletaleRepeatedClassesWidget.html.erb");
     assertEquals(repeatedPackagesWidget.getTemplatePath(), "/TattletaleRepeatedPackagesWidget.html.erb");
+    assertEquals(circularDependenciesWidget.getTemplatePath(), "/TattletaleCircularDependenciesWidget.html.erb");
   }
 }

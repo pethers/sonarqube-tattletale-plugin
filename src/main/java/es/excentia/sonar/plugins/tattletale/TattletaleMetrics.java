@@ -105,6 +105,21 @@ public class TattletaleMetrics implements Metrics {
   public static final Metric HTMLREPEATEDPACKAGES = new Metric.Builder("html_repeatedpackages", "HTML Repeated packages", ValueType.DATA)
       .setDescription("Repeated packages HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
 
+  /************************************************** CIRCULAR DEPENDENCIES ************************************************************/
+
+  /**
+   * Repeated classes
+   */
+  public static final Metric CIRCULARDEPENDENCIES = new Metric.Builder("circulardependencies", "Circular dependencies", ValueType.INT)
+      .setDescription("Circular dependencies number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
+
+  /**
+   * Repeated classes HTML
+   */
+  public static final Metric HTMLCIRCULARDEPENDENCIES = new Metric.Builder("html_circulardependencies", "HTML Circular dependencies",
+      ValueType.DATA).setDescription("Circular dependencies HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false)
+      .setDomain(DOMAIN).create();
+
   /**
    * getMetrics Static method
    * 
@@ -112,7 +127,8 @@ public class TattletaleMetrics implements Metrics {
    */
   public static List<Metric> getMetricsStatic() {
     return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, NOVERSIONJARS, INVALIDVERSIONJARS, REPEATEDCLASSES, REPEATEDPACKAGES,
-        HTMLUNUSEDJARS, HTMLSIGNEDJARS, HTMLNOVERSIONJARS, HTMLINVALIDVERSIONJARS, HTMLREPEATEDCLASSES, HTMLREPEATEDPACKAGES);
+        CIRCULARDEPENDENCIES, HTMLUNUSEDJARS, HTMLSIGNEDJARS, HTMLNOVERSIONJARS, HTMLINVALIDVERSIONJARS, HTMLREPEATEDCLASSES,
+        HTMLREPEATEDPACKAGES, HTMLCIRCULARDEPENDENCIES);
   }
 
   /**

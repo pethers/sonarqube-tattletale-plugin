@@ -141,7 +141,8 @@ public class TattletaleSensor implements Sensor {
       TattletaleUtil.changeNodesToText(page, filter);
 
       // after removing
-      if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)) {
+      if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)
+          || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
         data = page.toHtml().replaceAll(", ", "");
       } else {
         data = page.toHtml();
@@ -152,7 +153,8 @@ public class TattletaleSensor implements Sensor {
 
       if (valueMetric.equals(TattletaleMetrics.NOVERSIONJARS) || valueMetric.equals(TattletaleMetrics.INVALIDVERSIONJARS)) {
         filter = new TagNameFilter("p");
-      } else if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)) {
+      } else if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)
+          || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
         filter = new TagNameFilter("tr");
       } else {
         filter = new TagNameFilter("td");
@@ -163,7 +165,7 @@ public class TattletaleSensor implements Sensor {
 
       // in some cases there is one more expression in the code
       if (valueMetric.equals(TattletaleMetrics.SIGNEDJARS) || valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES)
-          || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)) {
+          || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES) || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
         metricValue--;
       }
 
@@ -216,6 +218,10 @@ public class TattletaleSensor implements Sensor {
       // REPEATED PACKAGES
       data = TattletaleUtil.fileToString(directory + "/multiplejarspackage/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLREPEATEDPACKAGES, TattletaleMetrics.REPEATEDPACKAGES, "");
+
+      // CIRCULAR DEPENDENCIES
+      data = TattletaleUtil.fileToString(directory + "/circulardependency/index.html");
+      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLCIRCULARDEPENDENCIES, TattletaleMetrics.CIRCULARDEPENDENCIES, "");
     }
   }
 }
