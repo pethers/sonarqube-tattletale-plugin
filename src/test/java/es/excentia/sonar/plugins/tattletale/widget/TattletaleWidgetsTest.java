@@ -13,6 +13,8 @@ public class TattletaleWidgetsTest {
   private static TattletaleSignedJarsWidget signedJarsWidget;
   private static TattletaleNoVersionJarsWidget noVersionJarsWidget;
   private static TattletaleInvalidVersionJarsWidget invalidVersionJarsWidget;
+  private static TattletaleRepeatedClassesWidget repeatedClassesWidget;
+  private static TattletaleRepeatedPackagesWidget repeatedPackagesWidget;
 
   /**
    * Called once before test methods
@@ -23,6 +25,8 @@ public class TattletaleWidgetsTest {
     signedJarsWidget = new TattletaleSignedJarsWidget();
     noVersionJarsWidget = new TattletaleNoVersionJarsWidget();
     invalidVersionJarsWidget = new TattletaleInvalidVersionJarsWidget();
+    repeatedClassesWidget = new TattletaleRepeatedClassesWidget();
+    repeatedPackagesWidget = new TattletaleRepeatedPackagesWidget();
   }
 
   @Test
@@ -31,6 +35,8 @@ public class TattletaleWidgetsTest {
     assertEquals(signedJarsWidget.getId(), "tattletalesignedjarswidget");
     assertEquals(noVersionJarsWidget.getId(), "tattletalenoversionjarswidget");
     assertEquals(invalidVersionJarsWidget.getId(), "tattletaleinvalidversionjarswidget");
+    assertEquals(repeatedClassesWidget.getId(), "tattletalerepeatedclasseswidget");
+    assertEquals(repeatedPackagesWidget.getId(), "tattletalerepeatedpackageswidget");
   }
 
   @Test
@@ -39,6 +45,8 @@ public class TattletaleWidgetsTest {
     assertEquals(signedJarsWidget.getTitle(), "Tattletale Signed JARs");
     assertEquals(noVersionJarsWidget.getTitle(), "Tattletale No Version JARs");
     assertEquals(invalidVersionJarsWidget.getTitle(), "Tattletale Invalid Version JARs");
+    assertEquals(repeatedClassesWidget.getTitle(), "Tattletale Repeated Classes");
+    assertEquals(repeatedPackagesWidget.getTitle(), "Tattletale Repeated Packages");
   }
 
   @Test
@@ -47,5 +55,7 @@ public class TattletaleWidgetsTest {
     assertEquals(signedJarsWidget.getTemplatePath(), "/TattletaleSignedJarsWidget.html.erb");
     assertEquals(noVersionJarsWidget.getTemplatePath(), "/TattletaleNoVersionJarsWidget.html.erb");
     assertEquals(invalidVersionJarsWidget.getTemplatePath(), "/TattletaleInvalidVersionJarsWidget.html.erb");
+    assertEquals(repeatedClassesWidget.getTemplatePath(), "/TattletaleRepeatedClassesWidget.html.erb");
+    assertEquals(repeatedPackagesWidget.getTemplatePath(), "/TattletaleRepeatedPackagesWidget.html.erb");
   }
 }

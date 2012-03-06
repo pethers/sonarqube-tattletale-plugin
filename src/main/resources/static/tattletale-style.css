@@ -33,6 +33,13 @@ tr td {
     vertical-align: top;
     text-align: left;
     padding: 3px;
+    white-space: nowrap;
+}
+
+td p {
+	font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
+	font-weight: bold;
+	white-space: nowrap;
 }
 
 .roweven {

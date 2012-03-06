@@ -8,6 +8,8 @@ import org.sonar.api.SonarPlugin;
 
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleInvalidVersionJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleNoVersionJarsWidget;
+import es.excentia.sonar.plugins.tattletale.widget.TattletaleRepeatedClassesWidget;
+import es.excentia.sonar.plugins.tattletale.widget.TattletaleRepeatedPackagesWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleSignedJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleUnusedJarsWidget;
 
@@ -31,6 +33,8 @@ public class TattletalePlugin extends SonarPlugin {
     extensions.add(TattletaleSignedJarsWidget.class);
     extensions.add(TattletaleNoVersionJarsWidget.class);
     extensions.add(TattletaleInvalidVersionJarsWidget.class);
+    extensions.add(TattletaleRepeatedClassesWidget.class);
+    extensions.add(TattletaleRepeatedPackagesWidget.class);
 
     return extensions;
   }

@@ -7,7 +7,7 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Plugin Invalid version JARs Widget
+ * Tattletale Invalid version JARs Widget
  * 
  */
 @UserRole(UserRole.USER)

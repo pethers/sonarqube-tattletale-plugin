@@ -7,7 +7,7 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Plugin Unused JARs Widget
+ * Tattletale Unused JARs Widget
  * 
  */
 @UserRole(UserRole.USER)

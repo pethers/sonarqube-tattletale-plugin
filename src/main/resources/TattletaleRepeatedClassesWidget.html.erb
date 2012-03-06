@@ -1,0 +1,33 @@
+<div class="yui-g">
+	<div class="dashbox" style="height:100%">
+		<p class="title">
+			<%= message('widget.repeatedclasses.title') -%>
+		</p>
+		<% if measure('html_repeatedclasses') && measure('repeatedclasses') %>
+		<p>
+			<span class="big"> <%= format_measure('repeatedclasses') -%> <%= tendency_icon(measure('repeatedclasses')) -%></span>
+		</p>
+		<% else %>
+			<br />
+			<p>
+				<%= message('widget.sonar-tattletale-plugin.error') -%>
+			</p>
+		<% end %>
+		<script type="text/javascript">
+		
+			<% if measure('html_repeatedclasses') && measure('repeatedclasses') %>
+				function fillsRepeatedClasses() {
+					var repeatedClassesHtmlData = '<%= measure('html_repeatedclasses').data -%>';
+					document.getElementById('repeatedClassesIframe').contentDocument.body.innerHTML = repeatedClassesHtmlData;
+				}
+
+				Event.observe(window, 'load', function() {
+					fillsRepeatedClasses();
+				});
+			<% end %>
+		</script>
+	</div>
+</div>
+<% if measure('html_repeatedclasses') && measure('repeatedclasses') %> 
+	<iframe id="repeatedClassesIframe" width="100%" style="border: 0"></iframe>
+<% end %> 

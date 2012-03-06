@@ -1,0 +1,33 @@
+<div class="yui-g">
+	<div class="dashbox" style="height:100%">
+		<p class="title">
+			<%= message('widget.repeatedpackages.title') -%>
+		</p>
+		<% if measure('html_repeatedpackages') && measure('repeatedpackages') %>
+		<p>
+			<span class="big"> <%= format_measure('repeatedpackages') -%> <%= tendency_icon(measure('repeatedpackages')) -%></span>
+		</p>
+		<% else %>
+			<br />
+			<p>
+				<%= message('widget.sonar-tattletale-plugin.error') -%>
+			</p>
+		<% end %>
+		<script type="text/javascript">
+		
+			<% if measure('html_repeatedpackages') && measure('repeatedpackages') %>
+				function fillsRepeatedPackages() {
+					var repeatedPackagesHtmlData = '<%= measure('html_repeatedpackages').data -%>';
+					document.getElementById('repeatedPackagesIframe').contentDocument.body.innerHTML = repeatedPackagesHtmlData;
+				}
+
+				Event.observe(window, 'load', function() {
+					fillsRepeatedPackages();
+				});
+			<% end %>
+		</script>
+	</div>
+</div>
+<% if measure('html_repeatedpackages') && measure('repeatedpackages') %> 
+	<iframe id="repeatedPackagesIframe" width="100%" style="border: 0"></iframe>
+<% end %> 

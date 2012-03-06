@@ -7,26 +7,26 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Signed JARs Widget
+ * Tattletale Repeated Classes Widget
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows the signed JARs")
+@Description("Shows the repeated classes")
 @WidgetCategory("Tattletale")
-public class TattletaleSignedJarsWidget extends AbstractRubyTemplate implements RubyRailsWidget {
+public class TattletaleRepeatedClassesWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
   /**
    * Returns Widget ID
    */
   public final String getId() {
-    return "tattletalesignedjarswidget";
+    return "tattletalerepeatedclasseswidget";
   }
 
   /**
    * Returns Widget Title
    */
   public final String getTitle() {
-    return "Tattletale Signed JARs";
+    return "Tattletale Repeated Classes";
   }
 
   /**
@@ -34,6 +34,6 @@ public class TattletaleSignedJarsWidget extends AbstractRubyTemplate implements 
    */
   @Override
   protected final String getTemplatePath() {
-    return "/TattletaleSignedJarsWidget.html.erb";
+    return "/TattletaleRepeatedClassesWidget.html.erb";
   }
 }

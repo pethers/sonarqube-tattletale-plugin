@@ -20,7 +20,7 @@ public class TattletaleMetrics implements Metrics {
   public static final Metric TOTALJARS = new Metric.Builder("totaljars", "Total JARs", ValueType.INT).setDescription("Total JARs number")
       .setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
 
-  /******************************************************* UNUSED JARS *************************************************************/
+  /******************************************************* UNUSED JARS ***********************************************************/
 
   /**
    * Unused jars
@@ -34,7 +34,7 @@ public class TattletaleMetrics implements Metrics {
   public static final Metric HTMLUNUSEDJARS = new Metric.Builder("html_unusedjars", "HTML Unused JARs", ValueType.DATA)
       .setDescription("Unused JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
 
-  /******************************************************* SIGNED JARS *************************************************************/
+  /******************************************************* SIGNED JARS ************************************************************/
 
   /**
    * Signed jars
@@ -48,7 +48,7 @@ public class TattletaleMetrics implements Metrics {
   public static final Metric HTMLSIGNEDJARS = new Metric.Builder("html_signedjars", "HTML Signed JARs", ValueType.DATA)
       .setDescription("Signed JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
 
-  /******************************************************* NO VERSION JARS **********************************************************/
+  /******************************************************* NO VERSION JARS *********************************************************/
 
   /**
    * Signed jars
@@ -77,14 +77,42 @@ public class TattletaleMetrics implements Metrics {
       ValueType.DATA).setDescription("Invalid version JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false)
       .setDomain(DOMAIN).create();
 
+  /************************************************** REPEATED CLASSES *************************************************************/
+
+  /**
+   * Repeated classes
+   */
+  public static final Metric REPEATEDCLASSES = new Metric.Builder("repeatedclasses", "Repeated classes", ValueType.INT)
+      .setDescription("Repeated classes number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
+
+  /**
+   * Repeated classes HTML
+   */
+  public static final Metric HTMLREPEATEDCLASSES = new Metric.Builder("html_repeatedclasses", "HTML Repeated classes", ValueType.DATA)
+      .setDescription("Repeated classes HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
+
+  /************************************************** REPEATED PACKAGES ************************************************************/
+
+  /**
+   * Repeated classes
+   */
+  public static final Metric REPEATEDPACKAGES = new Metric.Builder("repeatedpackages", "Repeated packages", ValueType.INT)
+      .setDescription("Repeated packages number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
+
+  /**
+   * Repeated classes HTML
+   */
+  public static final Metric HTMLREPEATEDPACKAGES = new Metric.Builder("html_repeatedpackages", "HTML Repeated packages", ValueType.DATA)
+      .setDescription("Repeated packages HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
+
   /**
    * getMetrics Static method
    * 
    * @return metrics defined list
    */
   public static List<Metric> getMetricsStatic() {
-    return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, NOVERSIONJARS, INVALIDVERSIONJARS, HTMLUNUSEDJARS, HTMLSIGNEDJARS,
-        HTMLNOVERSIONJARS, HTMLINVALIDVERSIONJARS);
+    return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, NOVERSIONJARS, INVALIDVERSIONJARS, REPEATEDCLASSES, REPEATEDPACKAGES,
+        HTMLUNUSEDJARS, HTMLSIGNEDJARS, HTMLNOVERSIONJARS, HTMLINVALIDVERSIONJARS, HTMLREPEATEDCLASSES, HTMLREPEATEDPACKAGES);
   }
 
   /**
