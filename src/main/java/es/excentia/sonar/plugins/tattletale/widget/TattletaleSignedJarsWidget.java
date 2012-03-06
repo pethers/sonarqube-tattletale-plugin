@@ -7,11 +7,11 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Signed JARs Widget
+ * Tattletale Signed libraries Widget
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows the signed JARs")
+@Description("Shows the signed libraries")
 @WidgetCategory("Tattletale")
 public class TattletaleSignedJarsWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
@@ -26,7 +26,7 @@ public class TattletaleSignedJarsWidget extends AbstractRubyTemplate implements 
    * Returns Widget Title
    */
   public final String getTitle() {
-    return "Tattletale Signed JARs";
+    return "Tattletale Signed libraries";
   }
 
   /**

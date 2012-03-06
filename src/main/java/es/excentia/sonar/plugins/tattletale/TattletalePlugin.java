@@ -7,6 +7,8 @@ import org.sonar.api.Extension;
 import org.sonar.api.SonarPlugin;
 
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleCircularDependenciesWidget;
+import es.excentia.sonar.plugins.tattletale.widget.TattletaleDifferentVersionsJarsWidget;
+import es.excentia.sonar.plugins.tattletale.widget.TattletaleDuplicatedJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleInvalidVersionJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleNoVersionJarsWidget;
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleRepeatedClassesWidget;
@@ -37,6 +39,8 @@ public class TattletalePlugin extends SonarPlugin {
     extensions.add(TattletaleRepeatedClassesWidget.class);
     extensions.add(TattletaleRepeatedPackagesWidget.class);
     extensions.add(TattletaleCircularDependenciesWidget.class);
+    extensions.add(TattletaleDifferentVersionsJarsWidget.class);
+    extensions.add(TattletaleDuplicatedJarsWidget.class);
 
     return extensions;
   }

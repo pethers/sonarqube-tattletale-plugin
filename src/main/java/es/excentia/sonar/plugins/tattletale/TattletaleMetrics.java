@@ -94,13 +94,13 @@ public class TattletaleMetrics implements Metrics {
   /************************************************** REPEATED PACKAGES ************************************************************/
 
   /**
-   * Repeated classes
+   * Repeated packages
    */
   public static final Metric REPEATEDPACKAGES = new Metric.Builder("repeatedpackages", "Repeated packages", ValueType.INT)
       .setDescription("Repeated packages number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
 
   /**
-   * Repeated classes HTML
+   * Repeated packages HTML
    */
   public static final Metric HTMLREPEATEDPACKAGES = new Metric.Builder("html_repeatedpackages", "HTML Repeated packages", ValueType.DATA)
       .setDescription("Repeated packages HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
@@ -108,17 +108,47 @@ public class TattletaleMetrics implements Metrics {
   /************************************************** CIRCULAR DEPENDENCIES ************************************************************/
 
   /**
-   * Repeated classes
+   * Circular dependencies
    */
   public static final Metric CIRCULARDEPENDENCIES = new Metric.Builder("circulardependencies", "Circular dependencies", ValueType.INT)
       .setDescription("Circular dependencies number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
 
   /**
-   * Repeated classes HTML
+   * Circular dependencies HTML
    */
   public static final Metric HTMLCIRCULARDEPENDENCIES = new Metric.Builder("html_circulardependencies", "HTML Circular dependencies",
       ValueType.DATA).setDescription("Circular dependencies HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false)
       .setDomain(DOMAIN).create();
+
+  /************************************************** DIFFERENT VERSIONS JARS *********************************************************/
+
+  /**
+   * Different versions JARs
+   */
+  public static final Metric DIFFERENTVERSIONSJARS = new Metric.Builder("differentversionsjars", "Different versions JARs", ValueType.INT)
+      .setDescription("Different versions JARs number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN)
+      .create();
+
+  /**
+   * Different versions JARs HTML
+   */
+  public static final Metric HTMLDIFFERENTVERSIONSJARS = new Metric.Builder("html_differentversionsjars", "HTML Different versions JARs",
+      ValueType.DATA).setDescription("Different versions JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false)
+      .setDomain(DOMAIN).create();
+
+  /************************************************** DUPLICATED JARS ******************************************************************/
+
+  /**
+   * Different versions JARs
+   */
+  public static final Metric DUPLICATEDJARS = new Metric.Builder("duplicatedjars", "Duplicated JARs", ValueType.INT)
+      .setDescription("Duplicated JARs number").setDirection(Metric.DIRECTION_WORST).setQualitative(false).setDomain(DOMAIN).create();
+
+  /**
+   * Different versions JARs HTML
+   */
+  public static final Metric HTMLDUPLICATEDJARS = new Metric.Builder("html_duplicatedjars", "HTML Duplicated JARs", ValueType.DATA)
+      .setDescription("Duplicated JARs HTML code").setDirection(Metric.DIRECTION_NONE).setQualitative(false).setDomain(DOMAIN).create();
 
   /**
    * getMetrics Static method
@@ -127,8 +157,9 @@ public class TattletaleMetrics implements Metrics {
    */
   public static List<Metric> getMetricsStatic() {
     return Arrays.asList(TOTALJARS, UNUSEDJARS, SIGNEDJARS, NOVERSIONJARS, INVALIDVERSIONJARS, REPEATEDCLASSES, REPEATEDPACKAGES,
-        CIRCULARDEPENDENCIES, HTMLUNUSEDJARS, HTMLSIGNEDJARS, HTMLNOVERSIONJARS, HTMLINVALIDVERSIONJARS, HTMLREPEATEDCLASSES,
-        HTMLREPEATEDPACKAGES, HTMLCIRCULARDEPENDENCIES);
+        CIRCULARDEPENDENCIES, DIFFERENTVERSIONSJARS, DUPLICATEDJARS, HTMLUNUSEDJARS, HTMLSIGNEDJARS, HTMLNOVERSIONJARS,
+        HTMLINVALIDVERSIONJARS, HTMLREPEATEDCLASSES, HTMLREPEATEDPACKAGES, HTMLCIRCULARDEPENDENCIES, HTMLDIFFERENTVERSIONSJARS,
+        HTMLDUPLICATEDJARS);
   }
 
   /**

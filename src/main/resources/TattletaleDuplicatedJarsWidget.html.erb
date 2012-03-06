@@ -1,0 +1,33 @@
+<div class="yui-g">
+	<div class="dashbox" style="height:100%">
+		<p class="title">
+			<%= message('widget.duplicatedjars.title') -%>
+		</p>
+		<% if measure('html_duplicatedjars') && measure('duplicatedjars') && measure('totaljars') %> 
+		<p>
+			<span class="big"> <%= format_measure('duplicatedjars') -%> <%= tendency_icon(measure('duplicatedjars')) -%></span> /<%= format_measure('totaljars') -%>
+		</p>
+		<% else %>
+			<br />
+			<p>
+				<%= message('widget.sonar-tattletale-plugin.error') -%>
+			</p>
+		<% end %>
+		<script type="text/javascript">
+		
+			<% if measure('html_duplicatedjars') && measure('duplicatedjars') && measure('totaljars') %> 
+				function fillsDuplicatedJars() {
+					var duplicatedHtmlData = '<%= measure('html_duplicatedjars').data -%>';
+					document.getElementById('duplicatedJarsIframe').contentDocument.body.innerHTML = duplicatedHtmlData;
+				}
+
+				Event.observe(window, 'load', function() {
+					fillsDuplicatedJars();
+				});
+			<% end %>
+		</script>
+	</div>
+</div>
+<% if measure('html_duplicatedjars') && measure('duplicatedjars') && measure('totaljars') %> 
+	<iframe id="duplicatedJarsIframe" width="100%" style="border: 0"></iframe>
+<% end %> 

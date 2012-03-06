@@ -31,6 +31,7 @@ public class TattletaleSensor implements Sensor {
 
   private static final int TWO = 2;
   private static final int FOUR = 4;
+  private static final String JAREXTENSION = ".jar";
 
   /**
    * @return the serverURL
@@ -151,7 +152,8 @@ public class TattletaleSensor implements Sensor {
       // save measure
       context.saveMeasure(new Measure(htmlMetric, data));
 
-      if (valueMetric.equals(TattletaleMetrics.NOVERSIONJARS) || valueMetric.equals(TattletaleMetrics.INVALIDVERSIONJARS)) {
+      if (valueMetric.equals(TattletaleMetrics.NOVERSIONJARS) || valueMetric.equals(TattletaleMetrics.INVALIDVERSIONJARS)
+          || valueMetric.equals(TattletaleMetrics.DIFFERENTVERSIONSJARS) || valueMetric.equals(TattletaleMetrics.DUPLICATEDJARS)) {
         filter = new TagNameFilter("p");
       } else if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)
           || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
@@ -205,11 +207,11 @@ public class TattletaleSensor implements Sensor {
 
       // NO VERSION JARs
       data = TattletaleUtil.fileToString(directory + "/noversion/index.html");
-      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLNOVERSIONJARS, TattletaleMetrics.NOVERSIONJARS, ".jar");
+      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLNOVERSIONJARS, TattletaleMetrics.NOVERSIONJARS, JAREXTENSION);
 
       // INVALID VERSION JARs
       data = TattletaleUtil.fileToString(directory + "/invalidversion/index.html");
-      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLINVALIDVERSIONJARS, TattletaleMetrics.INVALIDVERSIONJARS, ".jar");
+      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLINVALIDVERSIONJARS, TattletaleMetrics.INVALIDVERSIONJARS, JAREXTENSION);
 
       // REPEATED CLASSES
       data = TattletaleUtil.fileToString(directory + "/multiplejars/index.html");
@@ -222,6 +224,15 @@ public class TattletaleSensor implements Sensor {
       // CIRCULAR DEPENDENCIES
       data = TattletaleUtil.fileToString(directory + "/circulardependency/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLCIRCULARDEPENDENCIES, TattletaleMetrics.CIRCULARDEPENDENCIES, "");
+
+      // DIFFERENT VERSIONS JARs
+      data = TattletaleUtil.fileToString(directory + "/eliminatejars/index.html");
+      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLDIFFERENTVERSIONSJARS, TattletaleMetrics.DIFFERENTVERSIONSJARS,
+          JAREXTENSION);
+
+      // DUPLICATED JARs
+      data = TattletaleUtil.fileToString(directory + "/multiplelocations/index.html");
+      saveTattletaleMetric(context, data, TattletaleMetrics.HTMLDUPLICATEDJARS, TattletaleMetrics.DUPLICATEDJARS, JAREXTENSION);
     }
   }
 }

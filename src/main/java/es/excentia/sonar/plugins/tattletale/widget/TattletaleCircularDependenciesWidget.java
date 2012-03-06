@@ -7,11 +7,11 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Circular dependencies JARs Widget
+ * Tattletale Circular dependencies libraries Widget
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows circular dependencies between JARs")
+@Description("Shows circular dependencies between libraries")
 @WidgetCategory("Tattletale")
 public class TattletaleCircularDependenciesWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
@@ -26,7 +26,7 @@ public class TattletaleCircularDependenciesWidget extends AbstractRubyTemplate i
    * Returns Widget Title
    */
   public final String getTitle() {
-    return "Tattletale Circular Dependencies JARs";
+    return "Tattletale Circular Dependencies libraries";
   }
 
   /**

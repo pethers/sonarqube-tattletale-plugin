@@ -11,7 +11,7 @@ import org.sonar.api.web.WidgetCategory;
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows the repeated classes")
+@Description("Shows the repeated classes in the libraries")
 @WidgetCategory("Tattletale")
 public class TattletaleRepeatedClassesWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 

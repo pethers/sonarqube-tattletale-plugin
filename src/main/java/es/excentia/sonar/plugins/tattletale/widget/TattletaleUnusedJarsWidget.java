@@ -7,11 +7,11 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Unused JARs Widget
+ * Tattletale Unused libraries Widget
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows the unused JARs")
+@Description("Shows the unused libraries")
 @WidgetCategory("Tattletale")
 public class TattletaleUnusedJarsWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
@@ -26,7 +26,7 @@ public class TattletaleUnusedJarsWidget extends AbstractRubyTemplate implements 
    * Returns Widget Title
    */
   public final String getTitle() {
-    return "Tattletale Unused JARs";
+    return "Tattletale Unused libraries";
   }
 
   /**

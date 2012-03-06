@@ -7,11 +7,11 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale Invalid version JARs Widget
+ * Tattletale Invalid version libraries Widget
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows invalid version JARs")
+@Description("Shows invalid version libraries")
 @WidgetCategory("Tattletale")
 public class TattletaleInvalidVersionJarsWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
@@ -26,7 +26,7 @@ public class TattletaleInvalidVersionJarsWidget extends AbstractRubyTemplate imp
    * Returns Widget Title
    */
   public final String getTitle() {
-    return "Tattletale Invalid Version JARs";
+    return "Tattletale Invalid Version libraries";
   }
 
   /**

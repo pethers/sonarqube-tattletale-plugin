@@ -7,26 +7,26 @@ import org.sonar.api.web.UserRole;
 import org.sonar.api.web.WidgetCategory;
 
 /**
- * Tattletale No version libraries Widget
+ * Tattletale Duplicated libraries Widget
  * 
  */
 @UserRole(UserRole.USER)
-@Description("Shows no version libraries")
+@Description("Shows duplicated libraries with different versions")
 @WidgetCategory("Tattletale")
-public class TattletaleNoVersionJarsWidget extends AbstractRubyTemplate implements RubyRailsWidget {
+public class TattletaleDuplicatedJarsWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
   /**
    * Returns Widget ID
    */
   public final String getId() {
-    return "tattletalenoversionjarswidget";
+    return "tattletaleduplicatedjarswidget";
   }
 
   /**
    * Returns Widget Title
    */
   public final String getTitle() {
-    return "Tattletale No Version libraries";
+    return "Tattletale Duplicated libraries";
   }
 
   /**
@@ -34,6 +34,6 @@ public class TattletaleNoVersionJarsWidget extends AbstractRubyTemplate implemen
    */
   @Override
   protected final String getTemplatePath() {
-    return "/TattletaleNoVersionJarsWidget.html.erb";
+    return "/TattletaleDuplicatedJarsWidget.html.erb";
   }
 }

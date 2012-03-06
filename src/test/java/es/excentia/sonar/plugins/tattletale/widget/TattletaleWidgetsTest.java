@@ -16,6 +16,8 @@ public class TattletaleWidgetsTest {
   private static TattletaleRepeatedClassesWidget repeatedClassesWidget;
   private static TattletaleRepeatedPackagesWidget repeatedPackagesWidget;
   private static TattletaleCircularDependenciesWidget circularDependenciesWidget;
+  private static TattletaleDifferentVersionsJarsWidget differentVersionsJarsWidget;
+  private static TattletaleDuplicatedJarsWidget duplicatedJarsWidget;
 
   /**
    * Called once before test methods
@@ -29,6 +31,8 @@ public class TattletaleWidgetsTest {
     repeatedClassesWidget = new TattletaleRepeatedClassesWidget();
     repeatedPackagesWidget = new TattletaleRepeatedPackagesWidget();
     circularDependenciesWidget = new TattletaleCircularDependenciesWidget();
+    differentVersionsJarsWidget = new TattletaleDifferentVersionsJarsWidget();
+    duplicatedJarsWidget = new TattletaleDuplicatedJarsWidget();
   }
 
   @Test
@@ -40,17 +44,21 @@ public class TattletaleWidgetsTest {
     assertEquals(repeatedClassesWidget.getId(), "tattletalerepeatedclasseswidget");
     assertEquals(repeatedPackagesWidget.getId(), "tattletalerepeatedpackageswidget");
     assertEquals(circularDependenciesWidget.getId(), "tattletalecirculardependencieswidget");
+    assertEquals(differentVersionsJarsWidget.getId(), "tattletaledifferentversionsjarswidget");
+    assertEquals(duplicatedJarsWidget.getId(), "tattletaleduplicatedjarswidget");
   }
 
   @Test
   public void testWidgetsTitle() {
-    assertEquals(unusedJarsWidget.getTitle(), "Tattletale Unused JARs");
-    assertEquals(signedJarsWidget.getTitle(), "Tattletale Signed JARs");
-    assertEquals(noVersionJarsWidget.getTitle(), "Tattletale No Version JARs");
-    assertEquals(invalidVersionJarsWidget.getTitle(), "Tattletale Invalid Version JARs");
+    assertEquals(unusedJarsWidget.getTitle(), "Tattletale Unused libraries");
+    assertEquals(signedJarsWidget.getTitle(), "Tattletale Signed libraries");
+    assertEquals(noVersionJarsWidget.getTitle(), "Tattletale No Version libraries");
+    assertEquals(invalidVersionJarsWidget.getTitle(), "Tattletale Invalid Version libraries");
     assertEquals(repeatedClassesWidget.getTitle(), "Tattletale Repeated Classes");
     assertEquals(repeatedPackagesWidget.getTitle(), "Tattletale Repeated Packages");
-    assertEquals(circularDependenciesWidget.getTitle(), "Tattletale Circular Dependencies JARs");
+    assertEquals(circularDependenciesWidget.getTitle(), "Tattletale Circular Dependencies libraries");
+    assertEquals(differentVersionsJarsWidget.getTitle(), "Tattletale Different Versions libraries");
+    assertEquals(duplicatedJarsWidget.getTitle(), "Tattletale Duplicated libraries");
   }
 
   @Test
@@ -62,5 +70,7 @@ public class TattletaleWidgetsTest {
     assertEquals(repeatedClassesWidget.getTemplatePath(), "/TattletaleRepeatedClassesWidget.html.erb");
     assertEquals(repeatedPackagesWidget.getTemplatePath(), "/TattletaleRepeatedPackagesWidget.html.erb");
     assertEquals(circularDependenciesWidget.getTemplatePath(), "/TattletaleCircularDependenciesWidget.html.erb");
+    assertEquals(differentVersionsJarsWidget.getTemplatePath(), "/TattletaleDifferentVersionsJarsWidget.html.erb");
+    assertEquals(duplicatedJarsWidget.getTemplatePath(), "/TattletaleDuplicatedJarsWidget.html.erb");
   }
 }
