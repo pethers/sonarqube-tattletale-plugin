@@ -182,10 +182,10 @@ public class TattletaleSensor implements Sensor {
   /**
    * Obtains information about the Sonar project and used to save measures
    * 
-   * @param resource
-   *          the resource where the method is executed (project, class...)
+   * @param project
+   *          the resource where the method is executed
    * @param context
-   *          the decorator context
+   *          the sensor context
    */
   public final void analyse(Project project, SensorContext context) {
 
