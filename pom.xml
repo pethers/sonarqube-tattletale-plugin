@@ -1,162 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>es.excentia.sonar.plugins</groupId>
-	<artifactId>sonar-tattletale-plugin</artifactId>
-	<packaging>sonar-plugin</packaging>
-	<version>0.1-SNAPSHOT</version>
+  <groupId>es.excentia.sonar.plugins</groupId>
+  <artifactId>sonar-tattletale-plugin</artifactId>
+  <packaging>sonar-plugin</packaging>
+  <version>1.0-SNAPSHOT</version>
 
-	<name>Sonar Tattletale Plugin</name>
-	<description>Shows JBoss Tattletale tool information</description>
-	<url>http://www.excentia.es</url>
+  <name>Sonar Tattletale Plugin</name>
+  <description>Shows JBoss Tattletale tool information</description>
+  <url>http://www.excentia.es</url>
+  <inceptionYear>2012</inceptionYear>
 
-	<organization>
-		<name>eXcentia</name>
-		<url>http://www.excentia.es</url>
-	</organization>
+  <organization>
+    <name>eXcentia</name>
+    <url>http://www.excentia.es</url>
+  </organization>
 
-	<licenses>
-		<license>
-			<name>Commercial</name>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>GNU LGPL 3</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-	<developers>
-		<developer>
-			<id>jbadenas</id>
-			<name>Jesús Badenas</name>
-			<email>jbadenas@excentia.es</email>
-			<organization>eXcentia</organization>
-			<organizationUrl>www.excentia.es</organizationUrl>
-		</developer>
-	</developers>
-	
-	<issueManagement>
-		<system>jira</system>
-		<url>https://servicios.excentia.es/jira/browse/QAXPLUGINS/component/11091</url>
-	</issueManagement>
+  <developers>
+    <developer>
+      <id>jbadenas</id>
+      <name>Jesús Badenas</name>
+      <email>jbadenas@excentia.es</email>
+      <organization>eXcentia</organization>
+      <organizationUrl>www.excentia.es</organizationUrl>
+    </developer>
+  </developers>
 
-	<ciManagement>
-		<system>Hudson</system>
-		<url>https://servicios.excentia.es/hudson/job/sonar-tattletale-plugin/</url>
-	</ciManagement>
+  <issueManagement>
+    <system>jira</system>
+    <url>https://servicios.excentia.es/jira/browse/QAXPLUGINS/component/11091</url>
+  </issueManagement>
 
-	<distributionManagement>
-		<repository>
-			<id>excentia-releases</id>
-			<name>Repositorio de entregas de eXcentia</name>
-			<url>https://servicios.excentia.es/nexus/content/repositories/excentia-releases</url>
-		</repository>
+  <ciManagement>
+    <system>Hudson</system>
+    <url>https://servicios.excentia.es/hudson/job/sonar-tattletale-plugin/</url>
+  </ciManagement>
 
-		<snapshotRepository>
-			<id>excentia-snapshots</id>
-			<name>Repositorio de snapshots de eXcentia</name>
-			<url>https://servicios.excentia.es/nexus/content/repositories/excentia-snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-	
-	<scm>
-		<connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</connection>
-		<developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</developerConnection>
-		<url>https://servicios.excentia.es/fisheye/</url>
-	</scm>
+  <distributionManagement>
+    <repository>
+      <id>excentia-releases</id>
+      <name>Repositorio de entregas de eXcentia</name>
+      <url>https://servicios.excentia.es/nexus/content/repositories/excentia-releases</url>
+    </repository>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.version>2.12</sonar.version>
-		<jdk.min.version>1.5</jdk.min.version>
-	</properties>
+    <snapshotRepository>
+      <id>excentia-snapshots</id>
+      <name>Repositorio de snapshots de eXcentia</name>
+      <url>https://servicios.excentia.es/nexus/content/repositories/excentia-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
-	<dependencies>
-		<!-- Sonar plugin -->
-		<dependency>
-			<groupId>org.codehaus.sonar</groupId>
-			<artifactId>sonar-plugin-api</artifactId>
-			<version>${sonar.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Unit tests -->
-		<dependency>
-			<groupId>org.codehaus.sonar</groupId>
-			<artifactId>sonar-testing-harness</artifactId>
-			<version>${sonar.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- HTMLPARSER -->
-		<dependency>
-			<groupId>org.htmlparser</groupId>
-			<artifactId>htmllexer</artifactId>
-			<version>2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.htmlparser</groupId>
-			<artifactId>htmlparser</artifactId>
-			<version>2.0</version>
-		</dependency>
-	</dependencies>
+  <scm>
+    <connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</connection>
+    <developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</developerConnection>
+    <url>https://servicios.excentia.es/fisheye/</url>
+  </scm>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.sonar</groupId>
-				<artifactId>sonar-packaging-maven-plugin</artifactId>
-				<version>1.1</version>
-				<extensions>true</extensions>
-				<configuration>
-					<pluginClass>es.excentia.sonar.plugins.tattletale.TattletalePlugin</pluginClass>
-					<pluginName>Sonar Tattletale Plugin</pluginName>
-					<pluginKey>sonarTattletalePlugin</pluginKey>
-					<pluginDescription>Shows JBoss Tattletale tool information</pluginDescription>
-				</configuration>
-			</plugin>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.version>2.12</sonar.version>
+    <jdk.min.version>1.5</jdk.min.version>
+  </properties>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
-			</plugin>
+  <dependencies>
+    <!-- Sonar plugin -->
+    <dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>${sonar.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Unit tests -->
+    <dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-testing-harness</artifactId>
+      <version>${sonar.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- HTMLPARSER -->
+    <dependency>
+      <groupId>org.htmlparser</groupId>
+      <artifactId>htmllexer</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.htmlparser</groupId>
+      <artifactId>htmlparser</artifactId>
+      <version>2.0</version>
+    </dependency>
+  </dependencies>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
-				<configuration>
-					<source>${jdk.min.version}</source>
-					<target>${jdk.min.version}</target>
-				</configuration>
-			</plugin>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.sonar</groupId>
+        <artifactId>sonar-packaging-maven-plugin</artifactId>
+        <version>1.1</version>
+        <extensions>true</extensions>
+        <configuration>
+          <pluginClass>es.excentia.sonar.plugins.tattletale.TattletalePlugin</pluginClass>
+          <pluginName>Sonar Tattletale Plugin</pluginName>
+          <pluginKey>sonarTattletalePlugin</pluginKey>
+          <pluginDescription>Shows JBoss Tattletale tool information</pluginDescription>
+        </configuration>
+      </plugin>
 
-			<plugin>
-				<!-- UTF-8 bundles are not supported by Java, so they must be converted during build -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>native2ascii-maven-plugin</artifactId>
-				<version>1.0-alpha-1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>native2ascii</goal>
-						</goals>
-						<configuration>
-							<encoding>UTF8</encoding>
-							<src>${basedir}/src/main/resources</src>
-							<dest>${project.build.outputDirectory}</dest>
-							<includes>**/*.properties</includes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.8</version>
+      </plugin>
 
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-webdav-jackrabbit</artifactId>
-				<version>1.0</version>
-			</extension>
-		</extensions>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>${jdk.min.version}</source>
+          <target>${jdk.min.version}</target>
+        </configuration>
+      </plugin>
 
-	</build>
+      <plugin>
+        <!-- UTF-8 bundles are not supported by Java, so they must be converted during build -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>native2ascii-maven-plugin</artifactId>
+        <version>1.0-alpha-1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>native2ascii</goal>
+            </goals>
+            <configuration>
+              <encoding>UTF8</encoding>
+              <src>${basedir}/src/main/resources</src>
+              <dest>${project.build.outputDirectory}</dest>
+              <includes>**/*.properties</includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav-jackrabbit</artifactId>
+        <version>1.0</version>
+      </extension>
+    </extensions>
+
+  </build>
 </project>
