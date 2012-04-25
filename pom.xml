@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>es.excentia.sonar.plugins</groupId>
   <artifactId>sonar-tattletale-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>Sonar Tattletale Plugin</name>
   <description>Shows JBoss Tattletale tool information</description>
@@ -61,9 +60,9 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</connection>
-    <developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</developerConnection>
-    <url>https://servicios.excentia.es/fisheye/</url>
+    <connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/tags/sonar-tattletale-plugin-1.0</connection>
+    <developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/tags/sonar-tattletale-plugin-1.0</developerConnection>
+    <url>https://servicios.excentia.es/fisheye/tags/sonar-tattletale-plugin-1.0</url>
   </scm>
 
   <properties>
