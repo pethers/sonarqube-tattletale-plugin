@@ -44,7 +44,7 @@ public class TattletaleUtilTest {
 
   @Test
   public void testFileToString() {
-    assertTrue( !htmlCode.isEmpty());
+    assertTrue(htmlCode.length() > 0);
     assertTrue(htmlCode.contains("<title>JBoss Tattletale 1.1.2.Final: Unused Jar</title>"));
   }
 
