@@ -4,30 +4,30 @@
 			<%= message('widget.signedjars.title') -%>
 		</p>
 		<% if measure('html_signedjars') && measure('signedjars') && measure('totaljars') %>
-		<p>
-			<span class="big"> <%= format_measure('signedjars') -%> <%= tendency_icon(measure('signedjars')) -%></span> /<%= format_measure('totaljars') -%>
-		</p>
+			<p>
+				<span class="big"> <%= format_measure('signedjars') -%> <%= tendency_icon(measure('signedjars')) -%></span> /<%= format_measure('totaljars') -%>
+			</p>
+			<script type="text/javascript">
+				function fillsSignedJars() {
+					<% if (measure('signedjars').value.to_i > 0) %>
+						document.getElementById('signedJarsIframe').contentDocument.body.innerHTML = '<%= measure('html_signedjars').data -%>';
+					<% end %>
+				}
+	
+				Event.observe(window, 'load', function() {
+					fillsSignedJars();
+				});
+			</script>
 		<% else %>
 			<br />
 			<p>
 				<%= message('widget.sonar-tattletale-plugin.error') -%>
 			</p>
 		<% end %>
-		<script type="text/javascript">
-		
-			<% if measure('html_signedjars') && measure('signedjars') && measure('totaljars') %>
-				function fillsSignedJars() {
-					var signedHtmlData = '<%= measure('html_signedjars').data -%>';
-					document.getElementById('signedJarsIframe').contentDocument.body.innerHTML = signedHtmlData;
-				}
-
-				Event.observe(window, 'load', function() {
-					fillsSignedJars();
-				});
-			<% end %>
-		</script>
 	</div>
 </div>
-<% if measure('html_signedjars') && measure('signedjars') && measure('totaljars') %> 
-	<iframe id="signedJarsIframe" width="100%" style="border: 0"></iframe>
+<% if measure('html_signedjars') && measure('signedjars') && measure('totaljars') %>
+	<% if (measure('signedjars').value.to_i > 0) %>
+		<iframe id="signedJarsIframe" width="100%" style="border: 0"></iframe>
+	<% end %>
 <% end %> 

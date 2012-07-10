@@ -4,30 +4,30 @@
 			<%= message('widget.circulardependencies.title') -%>
 		</p>
 		<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %>
-		<p>
-			<span class="big"> <%= format_measure('circulardependencies') -%> <%= tendency_icon(measure('circulardependencies')) -%></span> /<%= format_measure('totaljars') -%>
-		</p>
+			<p>
+				<span class="big"> <%= format_measure('circulardependencies') -%> <%= tendency_icon(measure('circulardependencies')) -%></span> /<%= format_measure('totaljars') -%>
+			</p>
+			<script type="text/javascript">
+				function fillsCircularDependencies() {
+					<% if (measure('circulardependencies').value.to_i > 0) %>
+						document.getElementById('circularDependenciesIframe').contentDocument.body.innerHTML = '<%= measure('html_circulardependencies').data -%>';
+					<% end %>
+				}
+	
+				Event.observe(window, 'load', function() {
+					fillsCircularDependencies();
+				});
+			</script>
 		<% else %>
 			<br />
 			<p>
 				<%= message('widget.sonar-tattletale-plugin.error') -%>
 			</p>
 		<% end %>
-		<script type="text/javascript">
-		
-			<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %>
-				function fillsCircularDependencies() {
-					var circularDependenciesHtmlData = '<%= measure('html_circulardependencies').data -%>';
-					document.getElementById('circularDependenciesIframe').contentDocument.body.innerHTML = circularDependenciesHtmlData;
-				}
-
-				Event.observe(window, 'load', function() {
-					fillsCircularDependencies();
-				});
-			<% end %>
-		</script>
 	</div>
 </div>
-<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %> 
-	<iframe id="circularDependenciesIframe" width="100%" style="border: 0"></iframe>
+<% if measure('html_circulardependencies') && measure('circulardependencies') && measure('totaljars') %>
+	<% if (measure('circulardependencies').value.to_i > 0) %>
+		<iframe id="circularDependenciesIframe" width="100%" style="border: 0"></iframe>
+	<% end %>
 <% end %> 

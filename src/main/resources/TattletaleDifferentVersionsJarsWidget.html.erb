@@ -4,30 +4,30 @@
 			<%= message('widget.differentversionsjars.title') -%>
 		</p>
 		<% if measure('html_differentversionsjars') && measure('differentversionsjars') && measure('totaljars') %> 
-		<p>
-			<span class="big"> <%= format_measure('differentversionsjars') -%> <%= tendency_icon(measure('differentversionsjars')) -%></span> /<%= format_measure('totaljars') -%>
-		</p>
+			<p>
+				<span class="big"> <%= format_measure('differentversionsjars') -%> <%= tendency_icon(measure('differentversionsjars')) -%></span> /<%= format_measure('totaljars') -%>
+			</p>
+			<script type="text/javascript">
+				function fillsDifferentVersionsJars() {
+					<% if (measure('differentversionsjars').value.to_i > 0) %>
+						document.getElementById('differentVersionsJarsIframe').contentDocument.body.innerHTML = '<%= measure('html_differentversionsjars').data -%>';
+					<% end %>
+				}
+	
+				Event.observe(window, 'load', function() {
+					fillsDifferentVersionsJars();
+				});
+			</script>
 		<% else %>
 			<br />
 			<p>
 				<%= message('widget.sonar-tattletale-plugin.error') -%>
 			</p>
 		<% end %>
-		<script type="text/javascript">
-		
-			<% if measure('html_differentversionsjars') && measure('differentversionsjars') && measure('totaljars') %> 
-				function fillsDifferentVersionsJars() {
-					var differentVersionsHtmlData = '<%= measure('html_differentversionsjars').data -%>';
-					document.getElementById('differentVersionsJarsIframe').contentDocument.body.innerHTML = differentVersionsHtmlData;
-				}
-
-				Event.observe(window, 'load', function() {
-					fillsDifferentVersionsJars();
-				});
-			<% end %>
-		</script>
 	</div>
 </div>
-<% if measure('html_differentversionsjars') && measure('differentversionsjars') && measure('totaljars') %> 
-	<iframe id="differentVersionsJarsIframe" width="100%" style="border: 0"></iframe>
+<% if measure('html_differentversionsjars') && measure('differentversionsjars') && measure('totaljars') %>
+	<% if (measure('differentversionsjars').value.to_i > 0) %>
+		<iframe id="differentVersionsJarsIframe" width="100%" style="border: 0"></iframe>
+	<% end %>
 <% end %> 

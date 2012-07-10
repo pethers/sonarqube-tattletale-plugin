@@ -4,30 +4,30 @@
 			<%= message('widget.noversionjars.title') -%>
 		</p>
 		<% if measure('html_noversionjars') && measure('noversionjars') && measure('totaljars') %>
-		<p>
-			<span class="big"> <%= format_measure('noversionjars') -%> <%= tendency_icon(measure('noversionjars')) -%></span> /<%= format_measure('totaljars') -%>
-		</p>
+			<p>
+				<span class="big"> <%= format_measure('noversionjars') -%> <%= tendency_icon(measure('noversionjars')) -%></span> /<%= format_measure('totaljars') -%>
+			</p>
+			<script type="text/javascript">
+				function fillsNoVersionJars() {
+					<% if (measure('noversionjars').value.to_i > 0) %>
+						document.getElementById('noversionJarsIframe').contentDocument.body.innerHTML = '<%= measure('html_noversionjars').data -%>';
+					<% end %>
+				}
+	
+				Event.observe(window, 'load', function() {
+					fillsNoVersionJars();
+				});
+			</script>
 		<% else %>
 			<br />
 			<p>
 				<%= message('widget.sonar-tattletale-plugin.error') -%>
 			</p>
 		<% end %>
-		<script type="text/javascript">
-		
-			<% if measure('html_noversionjars') && measure('noversionjars') && measure('totaljars') %>
-				function fillsNoVersionJars() {
-					var noversionHtmlData = '<%= measure('html_noversionjars').data -%>';
-					document.getElementById('noversionJarsIframe').contentDocument.body.innerHTML = noversionHtmlData;
-				}
-
-				Event.observe(window, 'load', function() {
-					fillsNoVersionJars();
-				});
-			<% end %>
-		</script>
 	</div>
 </div>
-<% if measure('html_noversionjars') && measure('noversionjars') && measure('totaljars') %> 
-	<iframe id="noversionJarsIframe" width="100%" style="border: 0"></iframe>
+<% if measure('html_noversionjars') && measure('noversionjars') && measure('totaljars') %>
+	<% if (measure('noversionjars').value.to_i > 0) %>
+		<iframe id="noversionJarsIframe" width="100%" style="border: 0"></iframe>
+	<% end %>
 <% end %> 
