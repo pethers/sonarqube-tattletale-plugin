@@ -9,7 +9,7 @@
 
   <name>Sonar Tattletale Plugin</name>
   <description>Shows JBoss Tattletale tool information</description>
-  <url>http://www.excentia.es</url>
+  <url>https://servicios.excentia.es/confluence/display/QAX/SONAR+Tattletale+Plugin</url>
   <inceptionYear>2012</inceptionYear>
 
   <organization>
@@ -108,9 +108,7 @@
         <extensions>true</extensions>
         <configuration>
           <pluginClass>es.excentia.sonar.plugins.tattletale.TattletalePlugin</pluginClass>
-          <pluginName>Sonar Tattletale Plugin</pluginName>
           <pluginKey>sonarTattletalePlugin</pluginKey>
-          <pluginDescription>Shows JBoss Tattletale tool information</pluginDescription>
         </configuration>
       </plugin>
 
