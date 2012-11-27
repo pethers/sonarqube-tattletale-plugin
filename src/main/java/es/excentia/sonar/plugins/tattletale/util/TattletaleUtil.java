@@ -218,7 +218,7 @@ public final class TattletaleUtil {
         times++;
 
         if (onlyOne) {
-          return times;
+          break;
         }
       }
 
@@ -244,7 +244,7 @@ public final class TattletaleUtil {
 
     File file = new File(fileName);
 
-    if (file != null) {
+    if (file.exists()) {
 
       StringBuilder contents = new StringBuilder();
 
