@@ -35,8 +35,8 @@
   </issueManagement>
 
   <ciManagement>
-    <system>Hudson</system>
-    <url>https://servicios.excentia.es/hudson/job/sonar-tattletale-plugin/</url>
+    <system>Jenkins</system>
+    <url>https://www.qalitax.com/jenkins/job/sonar-tattletale-plugin/</url>
   </ciManagement>
 
   <scm>
