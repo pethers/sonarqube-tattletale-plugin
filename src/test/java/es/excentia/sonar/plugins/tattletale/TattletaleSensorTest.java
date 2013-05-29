@@ -1,6 +1,7 @@
 /*
  * Sonar Tattletale Plugin
  * Copyright (C) 2012 eXcentia
+ * contact@excentia.es
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,6 +19,7 @@
  */
 package es.excentia.sonar.plugins.tattletale;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -62,7 +64,6 @@ public class TattletaleSensorTest {
 
   @Test
   public void testShouldExecuteOnProject() {
-
     Project project = new Project("prueba");
     Language language = mock(Language.class);
 
@@ -77,7 +78,6 @@ public class TattletaleSensorTest {
 
   @Test
   public void testGetMetrics() {
-
     List<Metric> dependedMetrics = sensor.getDependedMetrics();
 
     assertTrue(dependedMetrics.containsAll(Arrays.asList(TattletaleMetrics.HTMLUNUSEDJARS, TattletaleMetrics.HTMLNOVERSIONJARS,
@@ -92,7 +92,7 @@ public class TattletaleSensorTest {
   @Test
   public void testSaveTotalJars() {
     sensor.saveTotalJars(context, htmlCode);
-    assertTrue(context.getValue() == 74);
+    assertEquals(context.getValue(), Double.valueOf(74.0));
   }
 
   @Test
@@ -104,6 +104,6 @@ public class TattletaleSensorTest {
 
     sensor.saveTattletaleMetric(context, htmlCode, htmlMetric, valueMetric, "No");
 
-    assertTrue(context.getValue() == 14);
+    assertEquals(context.getValue(), Double.valueOf(14.0));
   }
 }

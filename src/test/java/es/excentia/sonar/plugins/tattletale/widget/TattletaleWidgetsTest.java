@@ -1,6 +1,7 @@
 /*
  * Sonar Tattletale Plugin
  * Copyright (C) 2012 eXcentia
+ * contact@excentia.es
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,8 +23,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import es.excentia.sonar.plugins.tattletale.widget.TattletaleUnusedJarsWidget;
 
 public class TattletaleWidgetsTest {
 

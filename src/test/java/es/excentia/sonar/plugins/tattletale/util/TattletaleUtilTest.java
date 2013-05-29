@@ -1,6 +1,7 @@
 /*
  * Sonar Tattletale Plugin
  * Copyright (C) 2012 eXcentia
+ * contact@excentia.es
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,6 +19,7 @@
  */
 package es.excentia.sonar.plugins.tattletale.util;
 
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.htmlparser.NodeFilter;
@@ -27,8 +29,12 @@ import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TattletaleUtilTest {
+
+  private static final Logger LOG = LoggerFactory.getLogger(TattletaleUtilTest.class);
 
   private String fileName;
   private String htmlCode;
@@ -54,15 +60,15 @@ public class TattletaleUtilTest {
       NodeList page = parser.parse(null);
       NodeFilter filter = new TagNameFilter("head");
 
-      assertTrue(page.extractAllNodesThatMatch(filter, true).size() == 1);
+      assertSame(page.extractAllNodesThatMatch(filter, true).size(), 1);
 
       int deletedNodes = TattletaleUtil.removeNodesThatMatch(page, filter, true);
 
-      assertTrue(page.extractAllNodesThatMatch(filter, true).size() == 0);
-      assertTrue(deletedNodes == 1);
+      assertSame(page.extractAllNodesThatMatch(filter, true).size(), 0);
+      assertSame(deletedNodes, 1);
 
     } catch (ParserException exception) {
-      System.err.println(exception.getMessage());
+      LOG.debug(exception.getMessage());
     }
   }
 
@@ -77,10 +83,10 @@ public class TattletaleUtilTest {
       TattletaleUtil.removeNodesThatMatch(page, aFilter, true);
       TattletaleUtil.changeNodesToText(page, aFilter);
 
-      assertTrue(page.extractAllNodesThatMatch(aFilter, true).size() == 0);
+      assertSame(page.extractAllNodesThatMatch(aFilter, true).size(), 0);
 
     } catch (ParserException exception) {
-      System.err.println(exception.getMessage());
+      LOG.debug(exception.getMessage());
     }
   }
 
@@ -92,10 +98,10 @@ public class TattletaleUtilTest {
 
       int times = TattletaleUtil.countNumberOfTimesAppearsText(page, tdFilter, "No");
 
-      assertTrue(times == 14);
+      assertSame(times, 14);
 
     } catch (ParserException exception) {
-      System.err.println(exception.getMessage());
+      LOG.debug(exception.getMessage());
     }
   }
 
@@ -110,7 +116,7 @@ public class TattletaleUtilTest {
       assertTrue(page.toHtml().contains("href=\"/stylesheets/sonar.css\""));
 
     } catch (ParserException exception) {
-      System.err.println(exception.getMessage());
+      LOG.debug(exception.getMessage());
     }
   }
 }

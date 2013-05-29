@@ -1,6 +1,7 @@
 /*
  * Sonar Tattletale Plugin
  * Copyright (C) 2012 eXcentia
+ * contact@excentia.es
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -186,5 +187,4 @@ public class TattletaleMetrics implements Metrics {
   public final List<Metric> getMetrics() {
     return getMetricsStatic();
   }
-
 }

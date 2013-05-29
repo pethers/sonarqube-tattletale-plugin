@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>es.excentia</groupId>
+    <artifactId>super-pom</artifactId>
+    <version>2</version>
+  </parent>
 
   <groupId>es.excentia.sonar.plugins</groupId>
   <artifactId>sonar-tattletale-plugin</artifactId>
@@ -11,19 +18,6 @@
   <description>Shows JBoss Tattletale tool information</description>
   <url>https://servicios.excentia.es/confluence/display/QAX/SONAR+Tattletale+Plugin</url>
   <inceptionYear>2012</inceptionYear>
-
-  <organization>
-    <name>eXcentia</name>
-    <url>http://www.excentia.es</url>
-  </organization>
-
-  <licenses>
-    <license>
-      <name>GNU LGPL 3</name>
-      <url>http://www.gnu.org/licenses/lgpl.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
 
   <developers>
     <developer>
@@ -45,30 +39,18 @@
     <url>https://servicios.excentia.es/hudson/job/sonar-tattletale-plugin/</url>
   </ciManagement>
 
-  <distributionManagement>
-    <repository>
-      <id>excentia-releases</id>
-      <name>Repositorio de entregas de eXcentia</name>
-      <url>https://servicios.excentia.es/nexus/content/repositories/excentia-releases</url>
-    </repository>
-
-    <snapshotRepository>
-      <id>excentia-snapshots</id>
-      <name>Repositorio de snapshots de eXcentia</name>
-      <url>https://servicios.excentia.es/nexus/content/repositories/excentia-snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <scm>
     <connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</connection>
     <developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</developerConnection>
-    <url>https://servicios.excentia.es/fisheye/</url>
+    <url>https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</url>
   </scm>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar.version>2.12</sonar.version>
-    <jdk.min.version>1.5</jdk.min.version>
+    <htmllexer.version>2.0</htmllexer.version>
+    <htmlparser.version>2.0</htmlparser.version>
+    <sonar.packaging.maven.version>1.6</sonar.packaging.maven.version>
+    <license.name>GNU LGPL 3</license.name>
   </properties>
 
   <dependencies>
@@ -90,12 +72,12 @@
     <dependency>
       <groupId>org.htmlparser</groupId>
       <artifactId>htmllexer</artifactId>
-      <version>2.0</version>
+      <version>${htmllexer.version}</version>
     </dependency>
     <dependency>
       <groupId>org.htmlparser</groupId>
       <artifactId>htmlparser</artifactId>
-      <version>2.0</version>
+      <version>${htmlparser.version}</version>
     </dependency>
   </dependencies>
 
@@ -104,57 +86,15 @@
       <plugin>
         <groupId>org.codehaus.sonar</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>${sonar.packaging.maven.version}</version>
         <extensions>true</extensions>
         <configuration>
           <pluginClass>es.excentia.sonar.plugins.tattletale.TattletalePlugin</pluginClass>
           <pluginKey>sonarTattletalePlugin</pluginKey>
+          <pluginName>Tattletale</pluginName>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-eclipse-plugin</artifactId>
-        <version>2.8</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.0.2</version>
-        <configuration>
-          <source>${jdk.min.version}</source>
-          <target>${jdk.min.version}</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <!-- UTF-8 bundles are not supported by Java, so they must be converted during build -->
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>native2ascii-maven-plugin</artifactId>
-        <version>1.0-beta-1</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>native2ascii</goal>
-            </goals>
-            <configuration>
-              <encoding>UTF8</encoding>
-              <src>${basedir}/src/main/resources</src>
-              <dest>${project.build.outputDirectory}</dest>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
-
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-webdav-jackrabbit</artifactId>
-        <version>1.0</version>
-      </extension>
-    </extensions>
-
   </build>
+
 </project>
