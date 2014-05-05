@@ -28,10 +28,10 @@ import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.CoreProperties;
 import org.sonar.api.batch.DependedUpon;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.config.Settings;
 import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.Metric;
@@ -46,27 +46,22 @@ public class TattletaleSensor implements Sensor {
 
   private static final Logger LOG = LoggerFactory.getLogger(TattletaleUtil.class);
 
-  private final String serverURL;
+  private final String destinationDir;
+  private final FileSystem fileSystem;
 
   private static final int TWO = 2;
   private static final int FOUR = 4;
   private static final String JAREXTENSION = ".jar";
 
   /**
-   * @return the serverURL
-   */
-  public final String getServerURL() {
-    return serverURL;
-  }
-
-  /**
    * Constructor
    * 
    * @param settings
-   *          Sonar settings
+   * @param fileSystem
    */
-  public TattletaleSensor(Settings settings) {
-    this.serverURL = settings.getString(CoreProperties.SERVER_BASE_URL);
+  public TattletaleSensor(Settings settings, FileSystem fileSystem) {
+    this.destinationDir = settings.getString("tattletale-destination-directory");
+    this.fileSystem = fileSystem;
   }
 
   /**
@@ -75,10 +70,20 @@ public class TattletaleSensor implements Sensor {
   public final boolean shouldExecuteOnProject(Project project) {
     boolean execute = false;
 
-    // only if it's a java project
-    if (project.getLanguage().getKey().equals("java")) {
+    // Project modules
+    List<Project> modules = project.getModules();
+
+    if (modules.isEmpty()) {
+      // Java project
+      if (fileSystem.languages().contains(TattletaleUtil.JAVA_LANGUAGE_KEY)) {
+        execute = true;
+      }
+    }
+    // Project with modules must be executed always
+    else {
       execute = true;
     }
+
     return execute;
   }
 
@@ -144,10 +149,9 @@ public class TattletaleSensor implements Sensor {
       // Parses all HTML page
       NodeList page = parser.parse(null);
 
-      // Puts CSS style
-      NodeFilter filter = new TagNameFilter("link");
-      String style = getServerURL() + "/static/sonarTattletalePlugin/tattletale-style.css";
-      TattletaleUtil.putCssStyle(page, filter, style);
+      // Removing head
+      NodeFilter filter = new TagNameFilter("head");
+      TattletaleUtil.removeNodesThatMatch(page, filter, true);
 
       // Removing title
       filter = new TagNameFilter("h1");
@@ -162,7 +166,7 @@ public class TattletaleSensor implements Sensor {
 
       // after removing
       if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)
-          || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
+        || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
         data = page.toHtml().replaceAll(", ", "");
       } else {
         data = page.toHtml();
@@ -172,10 +176,10 @@ public class TattletaleSensor implements Sensor {
       context.saveMeasure(new Measure(htmlMetric, data));
 
       if (valueMetric.equals(TattletaleMetrics.NOVERSIONJARS) || valueMetric.equals(TattletaleMetrics.INVALIDVERSIONJARS)
-          || valueMetric.equals(TattletaleMetrics.DIFFERENTVERSIONSJARS) || valueMetric.equals(TattletaleMetrics.DUPLICATEDJARS)) {
+        || valueMetric.equals(TattletaleMetrics.DIFFERENTVERSIONSJARS) || valueMetric.equals(TattletaleMetrics.DUPLICATEDJARS)) {
         filter = new TagNameFilter("p");
       } else if (valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES) || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES)
-          || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
+        || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
         filter = new TagNameFilter("tr");
       } else {
         filter = new TagNameFilter("td");
@@ -186,7 +190,7 @@ public class TattletaleSensor implements Sensor {
 
       // in some cases there is one more expression in the code
       if (valueMetric.equals(TattletaleMetrics.SIGNEDJARS) || valueMetric.equals(TattletaleMetrics.REPEATEDCLASSES)
-          || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES) || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
+        || valueMetric.equals(TattletaleMetrics.REPEATEDPACKAGES) || valueMetric.equals(TattletaleMetrics.CIRCULARDEPENDENCIES)) {
         metricValue--;
       }
 
@@ -207,50 +211,46 @@ public class TattletaleSensor implements Sensor {
    *          the sensor context
    */
   public final void analyse(Project project, SensorContext context) {
-
-    String directory = (String) project.getProperty("tattletale-destination-directory");
-
-    if (directory != null) {
-
+    if (destinationDir != null) {
       // TOTAL JARs
-      String data = TattletaleUtil.fileToString(directory + "/unusedjar/index.html");
+      String data = TattletaleUtil.fileToString(destinationDir + "/unusedjar/index.html");
       saveTotalJars(context, data);
 
       // UNUSED JARs
-      data = TattletaleUtil.fileToString(directory + "/unusedjar/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/unusedjar/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLUNUSEDJARS, TattletaleMetrics.UNUSEDJARS, "No");
 
       // SIGNED JARs
-      data = TattletaleUtil.fileToString(directory + "/sign/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/sign/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLSIGNEDJARS, TattletaleMetrics.SIGNEDJARS, "Signed");
 
       // NO VERSION JARs
-      data = TattletaleUtil.fileToString(directory + "/noversion/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/noversion/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLNOVERSIONJARS, TattletaleMetrics.NOVERSIONJARS, JAREXTENSION);
 
       // INVALID VERSION JARs
-      data = TattletaleUtil.fileToString(directory + "/invalidversion/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/invalidversion/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLINVALIDVERSIONJARS, TattletaleMetrics.INVALIDVERSIONJARS, JAREXTENSION);
 
       // REPEATED CLASSES
-      data = TattletaleUtil.fileToString(directory + "/multiplejars/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/multiplejars/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLREPEATEDCLASSES, TattletaleMetrics.REPEATEDCLASSES, "");
 
       // REPEATED PACKAGES
-      data = TattletaleUtil.fileToString(directory + "/multiplejarspackage/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/multiplejarspackage/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLREPEATEDPACKAGES, TattletaleMetrics.REPEATEDPACKAGES, "");
 
       // CIRCULAR DEPENDENCIES
-      data = TattletaleUtil.fileToString(directory + "/circulardependency/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/circulardependency/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLCIRCULARDEPENDENCIES, TattletaleMetrics.CIRCULARDEPENDENCIES, "");
 
       // DIFFERENT VERSIONS JARs
-      data = TattletaleUtil.fileToString(directory + "/eliminatejars/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/eliminatejars/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLDIFFERENTVERSIONSJARS, TattletaleMetrics.DIFFERENTVERSIONSJARS,
           JAREXTENSION);
 
       // DUPLICATED JARs
-      data = TattletaleUtil.fileToString(directory + "/multiplelocations/index.html");
+      data = TattletaleUtil.fileToString(destinationDir + "/multiplelocations/index.html");
       saveTattletaleMetric(context, data, TattletaleMetrics.HTMLDUPLICATEDJARS, TattletaleMetrics.DUPLICATEDJARS, JAREXTENSION);
     }
   }

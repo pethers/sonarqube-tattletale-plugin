@@ -40,6 +40,8 @@ public final class TattletaleUtil {
 
   private static final Logger LOG = LoggerFactory.getLogger(TattletaleUtil.class);
 
+  public static final String JAVA_LANGUAGE_KEY = "java";
+
   /**
    * The only instance to be created
    */

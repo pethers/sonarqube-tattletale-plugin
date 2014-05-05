@@ -1,33 +1,18 @@
-<div class="yui-g">
-	<div class="dashbox" style="height:100%">
-		<p class="title">
-			<%= message('widget.duplicatedjars.title') -%>
-		</p>
-		<% if measure('html_duplicatedjars') && measure('duplicatedjars') && measure('totaljars') %> 
-			<p>
-				<span class="big"> <%= format_measure('duplicatedjars') -%> <%= tendency_icon(measure('duplicatedjars')) -%></span> /<%= format_measure('totaljars') -%>
-			</p>
-			<script type="text/javascript">
-				function fillsDuplicatedJars() {
-					<% if (measure('duplicatedjars').value.to_i > 0) %>
-						document.getElementById('duplicatedJarsIframe').contentDocument.body.innerHTML = '<%= measure('html_duplicatedjars').data -%>';
-					<% end %>
-				}
-	
-				Event.observe(window, 'load', function() {
-					fillsDuplicatedJars();
-				});
-			</script>
-		<% else %>
-			<br />
-			<p>
-				<%= message('widget.sonar-tattletale-plugin.error') -%>
-			</p>
-		<% end %>
-	</div>
-</div>
 <% if measure('html_duplicatedjars') && measure('duplicatedjars') && measure('totaljars') %>
-	<% if (measure('duplicatedjars').value.to_i > 0) %>
-		<iframe id="duplicatedJarsIframe" width="100%" style="border: 0"></iframe>
-	<% end %>
-<% end %> 
+<div class="yui-g">
+  <div class="dashbox" style="width: 100%">
+    <p class="title">
+      <%= message('widget.duplicatedjars.title') -%>
+    </p>
+    <p>
+      <span class="big"> <%= format_measure('duplicatedjars') -%> <%= tendency_icon(measure('duplicatedjars')) -%></span> /<%= format_measure('totaljars') -%>
+    </p>
+    <% if (measure('duplicatedjars').value.to_i > 0) %>
+      <link rel="stylesheet" type="text/css" href="<%= url_for_static(:plugin => 'sonarTattletalePlugin', :path => 'tattletale-style.css') -%>" />
+      <div style="width: 100%; padding-top: 15px; overflow-y: scroll; height: 150px">
+        <%= measure('html_duplicatedjars').data -%>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

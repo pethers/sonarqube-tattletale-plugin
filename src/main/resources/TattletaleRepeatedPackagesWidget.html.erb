@@ -1,33 +1,18 @@
+<% if measure('html_repeatedpackages') && measure('repeatedpackages') && measure('totaljars') %>
 <div class="yui-g">
-	<div class="dashbox" style="height:100%">
-		<p class="title">
-			<%= message('widget.repeatedpackages.title') -%>
-		</p>
-		<% if measure('html_repeatedpackages') && measure('repeatedpackages') %>
-			<p>
-				<span class="big"> <%= format_measure('repeatedpackages') -%> <%= tendency_icon(measure('repeatedpackages')) -%></span>
-			</p>
-			<script type="text/javascript">
-				function fillsRepeatedPackages() {
-					<% if (measure('repeatedpackages').value.to_i > 0) %>
-						document.getElementById('repeatedPackagesIframe').contentDocument.body.innerHTML = '<%= measure('html_repeatedpackages').data -%>';
-					<% end %>
-				}
-	
-				Event.observe(window, 'load', function() {
-					fillsRepeatedPackages();
-				});
-			</script>
-		<% else %>
-			<br />
-			<p>
-				<%= message('widget.sonar-tattletale-plugin.error') -%>
-			</p>
-		<% end %>
-	</div>
+  <div class="dashbox" style="width: 100%">
+    <p class="title">
+      <%= message('widget.repeatedpackages.title') -%>
+    </p>
+    <p>
+      <span class="big"> <%= format_measure('repeatedpackages') -%> <%= tendency_icon(measure('repeatedpackages')) -%></span> /<%= format_measure('totaljars') -%>
+    </p>
+    <% if (measure('repeatedpackages').value.to_i > 0) %>
+      <link rel="stylesheet" type="text/css" href="<%= url_for_static(:plugin => 'sonarTattletalePlugin', :path => 'tattletale-style.css') -%>" />
+      <div style="width: 100%; padding-top: 15px; overflow-y: scroll; height: 150px">
+        <%= measure('html_repeatedpackages').data -%>
+      </div>
+    <% end %>
+  </div>
 </div>
-<% if measure('html_repeatedpackages') && measure('repeatedpackages') %>
-	<% if (measure('repeatedpackages').value.to_i > 0) %>
-		<iframe id="repeatedPackagesIframe" width="100%" style="border: 0"></iframe>
-	<% end %>
-<% end %> 
+<% end %>

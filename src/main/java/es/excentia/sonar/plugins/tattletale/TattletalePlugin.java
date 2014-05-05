@@ -49,6 +49,7 @@ public class TattletalePlugin extends SonarPlugin {
   public final List<Class<? extends Extension>> getExtensions() {
     List<Class<? extends Extension>> extensions = new ArrayList<Class<? extends Extension>>();
 
+    extensions.add(TattletaleDashboard.class);
     extensions.add(TattletaleMetrics.class);
     extensions.add(TattletaleSensor.class);
     extensions.add(TattletaleUnusedJarsWidget.class);

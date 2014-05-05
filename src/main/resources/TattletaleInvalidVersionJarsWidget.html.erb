@@ -1,33 +1,18 @@
-<div class="yui-g">
-	<div class="dashbox" style="height:100%">
-		<p class="title">
-			<%= message('widget.invalidversionjars.title') -%>
-		</p>
-		<% if measure('html_invalidversionjars') && measure('invalidversionjars') && measure('totaljars') %>
-			<p>
-				<span class="big"> <%= format_measure('invalidversionjars') -%> <%= tendency_icon(measure('invalidversionjars')) -%></span> /<%= format_measure('totaljars') -%>
-			</p>
-			<script type="text/javascript">
-				function fillsInvalidVersionJars() {
-					<% if (measure('invalidversionjars').value.to_i > 0) %>
-						document.getElementById('invalidVersionJarsIframe').contentDocument.body.innerHTML = '<%= measure('html_invalidversionjars').data -%>';
-					<% end %>
-				}
-	
-				Event.observe(window, 'load', function() {
-					fillsInvalidVersionJars();
-				});
-			</script>
-		<% else %>
-			<br />
-			<p>
-				<%= message('widget.sonar-tattletale-plugin.error') -%>
-			</p>
-		<% end %>
-	</div>
-</div>
 <% if measure('html_invalidversionjars') && measure('invalidversionjars') && measure('totaljars') %>
-	<% if (measure('invalidversionjars').value.to_i > 0) %>
-		<iframe id="invalidVersionJarsIframe" width="100%" style="border: 0"></iframe>
-	<% end %>
-<% end %> 
+<div class="yui-g">
+  <div class="dashbox" style="width: 100%">
+    <p class="title">
+      <%= message('widget.invalidversionjars.title') -%>
+    </p>
+    <p>
+      <span class="big"> <%= format_measure('invalidversionjars') -%> <%= tendency_icon(measure('invalidversionjars')) -%></span> /<%= format_measure('totaljars') -%>
+    </p>
+    <% if (measure('invalidversionjars').value.to_i > 0) %>
+      <link rel="stylesheet" type="text/css" href="<%= url_for_static(:plugin => 'sonarTattletalePlugin', :path => 'tattletale-style.css') -%>" />
+      <div style="width: 100%; padding-top: 15px; overflow-y: scroll; height: 150px">
+        <%= measure('html_invalidversionjars').data -%>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

@@ -41,9 +41,10 @@ public class TattletalePluginTest {
 
   @Test
   public void testGetExtensions() {
-    assertEquals("Plugin extensions must contain all extensions created", plugin.getExtensions(), Arrays.asList(TattletaleMetrics.class,
-        TattletaleSensor.class, TattletaleUnusedJarsWidget.class, TattletaleSignedJarsWidget.class, TattletaleNoVersionJarsWidget.class,
-        TattletaleInvalidVersionJarsWidget.class, TattletaleRepeatedClassesWidget.class, TattletaleRepeatedPackagesWidget.class,
-        TattletaleCircularDependenciesWidget.class, TattletaleDifferentVersionsJarsWidget.class, TattletaleDuplicatedJarsWidget.class));
+    assertEquals("Plugin extensions must contain all extensions created", plugin.getExtensions(), Arrays.asList(TattletaleDashboard.class,
+        TattletaleMetrics.class, TattletaleSensor.class, TattletaleUnusedJarsWidget.class, TattletaleSignedJarsWidget.class,
+        TattletaleNoVersionJarsWidget.class, TattletaleInvalidVersionJarsWidget.class, TattletaleRepeatedClassesWidget.class,
+        TattletaleRepeatedPackagesWidget.class, TattletaleCircularDependenciesWidget.class, TattletaleDifferentVersionsJarsWidget.class,
+        TattletaleDuplicatedJarsWidget.class));
   }
 }
