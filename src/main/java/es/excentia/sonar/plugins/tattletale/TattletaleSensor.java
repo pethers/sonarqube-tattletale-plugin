@@ -121,7 +121,7 @@ public class TattletaleSensor implements Sensor {
       context.saveMeasure(TattletaleMetrics.TOTALJARS, total.doubleValue());
 
     } catch (ParserException exception) {
-      LOG.error(exception.getMessage());
+      LOG.error(exception.getMessage(), exception);
     }
   }
 
@@ -198,7 +198,7 @@ public class TattletaleSensor implements Sensor {
       context.saveMeasure(valueMetric, metricValue.doubleValue());
 
     } catch (ParserException exception) {
-      LOG.error(exception.getMessage());
+      LOG.error(exception.getMessage(), exception);
     }
   }
 

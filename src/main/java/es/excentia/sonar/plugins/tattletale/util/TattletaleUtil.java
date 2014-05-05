@@ -265,7 +265,7 @@ public final class TattletaleUtil {
           input.close();
         }
       } catch (IOException exception) {
-        LOG.error(exception.getMessage());
+        LOG.error(exception.getMessage(), exception);
       }
 
       data = contents.toString();
