@@ -11,7 +11,7 @@
   <groupId>es.excentia.sonar.plugins</groupId>
   <artifactId>sonar-tattletale-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>1.2</version>
+  <version>1.3-SNAPSHOT</version>
 
   <name>Sonar Tattletale Plugin</name>
   <description>Shows JBoss Tattletale tool information</description>
@@ -39,9 +39,9 @@
   </ciManagement>
 
   <scm>
-    <connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/tags/sonar-tattletale-plugin-1.2</connection>
-    <developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/tags/sonar-tattletale-plugin-1.2</developerConnection>
-    <url>https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/tags/sonar-tattletale-plugin-1.2</url>
+    <connection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</connection>
+    <developerConnection>scm:svn:https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</developerConnection>
+    <url>https://servicios.excentia.es/svn/codex/codex-plugins/sonar-tattletale-plugin/trunk</url>
   </scm>
 
   <properties>
