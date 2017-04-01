@@ -13,27 +13,34 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package es.excentia.sonar.plugins.tattletale;
 
+import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import org.sonar.api.batch.Event;
 import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.fs.InputModule;
+import org.sonar.api.batch.fs.InputPath;
+import org.sonar.api.batch.rule.ActiveRules;
+import org.sonar.api.batch.sensor.coverage.NewCoverage;
+import org.sonar.api.batch.sensor.cpd.NewCpdTokens;
+import org.sonar.api.batch.sensor.highlighting.NewHighlighting;
+import org.sonar.api.batch.sensor.issue.NewIssue;
+import org.sonar.api.batch.sensor.measure.NewMeasure;
+import org.sonar.api.batch.sensor.symbol.NewSymbolTable;
+import org.sonar.api.config.Settings;
 import org.sonar.api.design.Dependency;
 import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.MeasuresFilter;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.resources.ProjectLink;
 import org.sonar.api.resources.Resource;
-import org.sonar.api.rules.Violation;
+import org.sonar.api.utils.Version;
 
 /**
  * Implements a Sensor Context to be used in the test
@@ -71,6 +78,7 @@ public class SensorContextSupport implements SensorContext {
     return data;
   }
 
+  @Override
   public Measure saveMeasure(Measure measure) {
 
     if (measure.hasData()) {
@@ -81,7 +89,8 @@ public class SensorContextSupport implements SensorContext {
 
     return null;
   }
-
+  
+  @Override
   public Measure saveMeasure(Metric metric, Double value) {
     this.metric = metric;
     this.value = value;
@@ -94,112 +103,153 @@ public class SensorContextSupport implements SensorContext {
     return null;
   }
 
+  @Override
   public Measure saveMeasure(Resource resource, Measure measure) {
     return null;
   }
 
+  @Override
   public Measure saveMeasure(Resource resource, Metric metric, Double value) {
     return null;
   }
-
-  public Event createEvent(Resource resource, String arg1, String arg2, String arg3, Date arg4) {
-    return null;
-  }
-
-  public void deleteEvent(Event event) {
-  }
-
-  public void deleteLink(String arg0) {
-  }
-
+  
+  @Override
   public Collection<Resource> getChildren(Resource resource) {
     return null;
   }
 
-  public Set<Dependency> getDependencies() {
-    return null;
-  }
-
-  public List<Event> getEvents(Resource resource) {
-    return null;
-  }
-
-  public Collection<Dependency> getIncomingDependencies(Resource resource) {
-    return null;
-  }
-
+  @Override
   public Measure getMeasure(Metric metric) {
     return null;
   }
-
+  
+  @Override
   public Measure getMeasure(Resource resource, Metric metric) {
     return null;
   }
-
+  
+  @Override
   public <M> M getMeasures(MeasuresFilter<M> measuresFilter) {
     return null;
   }
-
+  
+  @Override
   public <M> M getMeasures(Resource resource, MeasuresFilter<M> measuresFilter) {
     return null;
   }
-
-  public Collection<Dependency> getOutgoingDependencies(Resource resource) {
-    return null;
-  }
-
+  
+  @Override
   public Resource getParent(Resource resource) {
     return null;
   }
 
+  @Override
   public <R extends Resource> R getResource(R arg0) {
     return null;
   }
 
+  @Override
   public boolean index(Resource resource) {
     return false;
   }
 
+  @Override
   public boolean index(Resource resource, Resource resource1) {
     return false;
   }
 
+  @Override
   public boolean isExcluded(Resource resource) {
     return false;
   }
 
+  @Override
   public boolean isIndexed(Resource resource, boolean arg1) {
     return false;
   }
 
+  @Override
   public Dependency saveDependency(Dependency dependency) {
     return null;
   }
-
-  public void saveLink(ProjectLink projectLink) {
-  }
-
+  
+  @Override
   public String saveResource(Resource resource) {
     return null;
   }
 
+  @Override
   public void saveSource(Resource resource, String source) {
   }
 
-  public void saveViolation(Violation violation) {
-  }
-
-  public void saveViolation(Violation violation, boolean arg1) {
-  }
-
-  public void saveViolations(Collection<Violation> violations) {
-  }
-
+  @Override
   public Measure saveMeasure(InputFile inputFile, Measure measure) {
     return null;
   }
-
+  
+  @Override
   public Measure saveMeasure(InputFile inputFile, Metric metric, Double value) {
     return null;
   }
+
+	@Override
+	public Settings settings() {
+		return null;
+	}
+	
+	@Override
+	public FileSystem fileSystem() {
+		return null;
+	}
+	
+	@Override
+	public ActiveRules activeRules() {
+		return null;
+	}
+	
+	@Override
+	public InputModule module() {
+		return null;
+	}
+	
+	@Override
+	public Version getSonarQubeVersion() {
+		return null;
+	}
+	
+	@Override
+	public <G extends Serializable> NewMeasure<G> newMeasure() {
+		return null;
+	}
+	
+	@Override
+	public NewIssue newIssue() {
+		return null;
+	}
+	
+	@Override
+	public NewHighlighting newHighlighting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public NewSymbolTable newSymbolTable() {
+		return null;
+	}
+	
+	@Override
+	public NewCoverage newCoverage() {
+		return null;
+	}
+	
+	@Override
+	public NewCpdTokens newCpdTokens() {
+		return null;
+	}
+	
+	@Override
+	public Resource getResource(InputPath inputPath) {
+		return null;
+	}
 }

@@ -3,11 +3,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>es.excentia</groupId>
-    <artifactId>super-pom</artifactId>
-    <version>4</version>
-  </parent>
+   <parent>
+        <groupId>org.sonarsource.parent</groupId>
+        <artifactId>parent</artifactId>
+        <version>40</version>
+   </parent>
 
   <groupId>es.excentia.sonar.plugins</groupId>
   <artifactId>sonar-tattletale-plugin</artifactId>
@@ -38,6 +38,15 @@
     <system>Jenkins</system>
     <url>https://www.qalitax.com/jenkins/job/sonar-tattletale-plugin/</url>
   </ciManagement>
+  
+  <licenses>
+        <license>
+            <name>GNU LGPL 3</name>
+            <url>http://www.gnu.org/licenses/lgpl.txt</url>
+            <distribution>repo</distribution>
+        </license>
+  </licenses>
+  
 
   <scm>
     <connection>scm:git:ssh://git@bitbucket.org/excentia/sonarqube-tattletale-plugin.git</connection>
@@ -46,26 +55,30 @@
   </scm>
 
   <properties>
-    <sonar.version>4.2</sonar.version>
-    <htmllexer.version>2.0</htmllexer.version>
-    <htmlparser.version>2.0</htmlparser.version>
-    <sonar.packaging.maven.version>1.9</sonar.packaging.maven.version>
-    <mockito.version>1.9.5</mockito.version>
-    <powermock.version>1.5.4</powermock.version>
-    <license.name>GNU LGPL 3</license.name>
+    <sonar.version>5.6</sonar.version>
+    <htmllexer.version>2.1</htmllexer.version>
+    <htmlparser.version>2.1</htmlparser.version>
+    <sonar.packaging.maven.version>1.16</sonar.packaging.maven.version>
+    <mockito.version>2.0.2-beta</mockito.version>
+    <powermock.version>1.7.0RC4</powermock.version>
+    <!--  <license.name>GNU LGPL 3</license.name>-->  
+    <license.owner>excentia</license.owner>
+    <license.mailto>contact@excentia.es</license.mailto>
+    <license.years>2012</license.years>
+    <license.title>Sonar Tattletale Plugin</license.title>        
   </properties>
 
   <dependencies>
     <!-- Sonar plugin -->
-    <dependency>
-      <groupId>org.codehaus.sonar</groupId>
-      <artifactId>sonar-plugin-api</artifactId>
-      <version>${sonar.version}</version>
-      <scope>provided</scope>
-    </dependency>
+     <dependency>
+        <groupId>org.sonarsource.sonarqube</groupId>
+       <artifactId>sonar-plugin-api</artifactId>
+       <version>${sonar.version}</version>
+       <scope>provided</scope>
+     </dependency>
     <!-- Unit tests -->
     <dependency>
-      <groupId>org.codehaus.sonar</groupId>
+      <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-testing-harness</artifactId>
       <version>${sonar.version}</version>
       <scope>test</scope>
@@ -100,12 +113,19 @@
       <artifactId>htmlparser</artifactId>
       <version>${htmlparser.version}</version>
     </dependency>
+    <dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-api</artifactId>
+	    <version>1.7.25</version>
+	    <scope>provided</scope>
+	</dependency>
+
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.sonar</groupId>
+        <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
         <version>${sonar.packaging.maven.version}</version>
         <extensions>true</extensions>

@@ -13,16 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package es.excentia.sonar.plugins.tattletale;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import org.sonar.api.Extension;
 import org.sonar.api.SonarPlugin;
 
 import es.excentia.sonar.plugins.tattletale.widget.TattletaleCircularDependenciesWidget;
@@ -46,22 +45,20 @@ public class TattletalePlugin extends SonarPlugin {
    * 
    * @return the classes to use into the plugin List
    */
-  public final List<Class<? extends Extension>> getExtensions() {
-    List<Class<? extends Extension>> extensions = new ArrayList<Class<? extends Extension>>();
-
-    extensions.add(TattletaleDashboard.class);
-    extensions.add(TattletaleMetrics.class);
-    extensions.add(TattletaleSensor.class);
-    extensions.add(TattletaleUnusedJarsWidget.class);
-    extensions.add(TattletaleSignedJarsWidget.class);
-    extensions.add(TattletaleNoVersionJarsWidget.class);
-    extensions.add(TattletaleInvalidVersionJarsWidget.class);
-    extensions.add(TattletaleRepeatedClassesWidget.class);
-    extensions.add(TattletaleRepeatedPackagesWidget.class);
-    extensions.add(TattletaleCircularDependenciesWidget.class);
-    extensions.add(TattletaleDifferentVersionsJarsWidget.class);
-    extensions.add(TattletaleDuplicatedJarsWidget.class);
-
-    return extensions;
+  @Override
+  public final List getExtensions() {
+	return Arrays.asList(TattletaleDashboard.class,
+			TattletaleMetrics.class,
+			TattletaleSensor.class,
+    		TattletaleUnusedJarsWidget.class,
+    		TattletaleSignedJarsWidget.class,
+    		TattletaleNoVersionJarsWidget.class,
+    		TattletaleInvalidVersionJarsWidget.class,
+    		TattletaleRepeatedClassesWidget.class,
+    		TattletaleRepeatedPackagesWidget.class,
+    		TattletaleCircularDependenciesWidget.class,
+    		TattletaleDifferentVersionsJarsWidget.class,
+    		TattletaleDuplicatedJarsWidget.class);
   }
+
 }
